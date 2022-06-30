@@ -19,6 +19,84 @@
 
 
 \begin{document}
+\section{Introduzione}
+Mentre nei corsi di programmazione solitamente c'è 1 programmatore che scrive algoritmi per una sola macchina, in un contesto più grande ci sono molti programmatori, suddivisi in team, che rispondono a vari committenti e realizzano sistemi e componenti che devono essere anche mantenuti.
+
+È necessario quindi organizzare lo sviluppo in un gruppo di lavoro complesso.
+
+\section{The mythical man-month}
+Nel suo libro "The mythical man-month", Brooks, racconta la sua esperienza nello sviluppo di OS/360. Un progetto pubblicato con un anno di ritardo e con sforamenti di budget altissimi.
+Nel libro si parla di come negli anni 70 era molto comune finire nella cosidetta tar-pit, sia con un team piccolo che uno enorme. Ci si ritrovano tutti senza capire la causa e molteplici fattori simultanei portano alla discesa. Tutti se ne possono accorgere ma non se ne capisce la causa.
+
+\subsection{La tar-pit}
+Si parte spiegando che per passare da un semplice programma a un prodotto veramente usabile ci vuole almeno lo sforzo originale moltiplicato per 9.
+Ogni programmatore si diverte creando la sua piccola opera, tuttavia i problemi arrivano quando deve interagire con altri, ordini dall'alto e altri programmatori. Mentre creare è divertente, trovare e risolvere i bug è solo lavoro. Il prodotto finale spesso non sembra bello come dovrebbe.
+
+\subsection{Legge di Brooks}
+Perché un progetto non rispetta i tempi prestabiliti?
+- Le tecniche di stima sono sempre ottimiste rispetto alla realtà
+    In un progetto ci sono molte attività, spesso collegate una all'altra, che possono andare nel modo sbagliato, aumentando di molto la probabilità di fallire.
+- Si confonde sforzo con progresso, personale e mesi non sono intercambiali (il mitico mese-uomo)
+- Le stime sono incerte
+- Il progresso è monitorato in modo superficiale
+- Si tende ad aggredire i ritardi aggiungendo personale, che causa ancora più ritardo
+
+Il mese-uomo non può essere usato come unità di misura perche personale e mesi non sono intercambiali quando si parla di programazione. Il mese-uomo è valido solo per le attività che non necessitano di comunicazione tra il personale (e.g. raccogliere pomodori). È impossibile applicarlo ad attività che non possono essere partizionate su più persone e per attività che richiedono comunicazione complessa come lo sviluppo software può generare risultati anche peggiori.
+Ogni risorsa umana aggiunta deve essere formata e questa attività non può essere partizionata, lo sforzo di comunicazione cresce di n(n-1)/2 ogni volta che ne viene aggiunta una.
+Il risultato è che aggiungendo risorse si arriva a un punto dove il tempo totale viene allungato e non ridotto.
+Legge di Brooks: aggiungendo personale a un progetto di sviluppo software in ritardo, lo farà tardare ancora di più.
+
+\subsection{La sala operatoria}
+Tra i programmatori se ne trova sempre uno che è 10 volte più capace e performante degli altri. Si potrebbe pensare di prendere solo questi ultimi e metterli a lavorare in un team piccolo, tuttavia non sarebbe possibile per progetti più grandi.
+
+La sala operatoria di Mills:
+- Il chirurgo: molto esperto in più settori, definisce le specifiche, progetta il programma, lo scrive e lo documenta. Conduce i test e controlla le versioni del programma.
+- Il copilota: ha meno esperienza del chirurgo ma potrebbe sostituirlo, agisce come consigliere del chirugo. Non scrive il codice ma lo conosce molto bene e fa da intermediatore con il team.
+- L'amministratore: si occupa di personale, paga, spazi per conto del chirurgo.
+- L'editore: si occupa di revisionare la documentazione scritta dal chirurgo.
+- Due segretari: uno per l'amministratore e uno per l'editore, il primo si occupa anche della corrispondenza.
+- L'addetto al programmma: si occupa di mantenere i record del team, gestisce i file, mantiene gli input e gli output.
+- Il fabbro: si occupa di utities, librerie e degli strumenti che verranno usati per programmare, togliendo questo pensiero a chi programma.
+- Il tester: pianifica i test e mette alla prova i programmi.
+- L'avvocato del linguaggio: mentre il chirugo pensa alla rappresentazione del programma, ci sarà un altro che conosce ogni segreto e trucco del linguaggio di programmazione per risolvere al meglio un problema. Può essere condiviso da più team.
+
+L'intero team della sala operatoria agisce e pensa come una sola persona.
+
+\subsection{La cattedrale}
+Non è possibile scalare la sala operatoria e mantenere l'integrità del sistema. Perché ciò accada, bisogna separare l'architettura dall'implementazione. L'architetto deve occuparsi solo dell'architettura e deve esserci una distinzione netta.
+
+L'integrità concettuale in un progetto è fondamentale, bisogna avere un solo set di idee anziché idee distinte e scoordinate.
+
+La semplicità arriva dall'integrità concettuale, questa arriva da una o poche menti. Tuttavia in un grande progetto deve esserci altra forza lavoro, e questa sarà nettamente separata da chi propone l'architettura. Una volta stabilito cosa si deve fare, si cerca di capire come farlo.
+
+Problemi di questo approccio sono che:
+- Le specifiche diventano troppo ricche di funzionalità e costose
+- Gli architetti diventano troppo creativi e traciano tutta l'inventività degli implementatori
+- Gli implementatori rimangono senza far niente per colpa del collo di bottiglia delle specifiche
+
+\subsection{L'effetto del secondo sistema}
+L'architetto deve considerare che l'implementazione potrebbe non andare come pensava e quindi potrebbe superare i costi previsti. L'architetto non ha l'ultima parola sull'implementazione ma deve esserci dialogo.
+
+Di solito il primo lavoro di un architetto è preciso e pulito, non sapendo cosa sta facendo procede cauto e si limita, spesso mette da parte cose troppo ambizione per una seconda volta. Il primo lavoro finisce e l'architetto acquisisce confidenza.
+
+Il secondo lavoro quindi diventa pieno di funzionalità ambiziose mentre si tenta di generalizzare quanto appreso dal lavoro precedente.
+
+\subsection{Passaparola}
+Per far si che un gruppo di 10 architetti mantenga l'integrità concettuale di un sistema costruito da 1000 persone è necessario che tutti si riescano a capire.
+
+Il manuale descrive cosa vede e cosa può fare l'utente, non specifica cosa accade dietro e ciò che l'utente non vede. Il manuale deve essere chiaro, preciso e completo, ogni definizione deve contenere tutte le informazioni anche se ripetitive perché l'utente legge solo le parti che gli servono.
+
+\subsection{La torre di Babele}
+La torre di Babebe è fallita per mancanza di comunicazione e di conseguenza organizzazione.
+
+Nello sviluppo di un grande progetto è necessaria comunicazione di tre tipi:
+- Informale: interpretazione di cosa è scritto
+- Riunioni: regolari riunioni per risolvere dubbi
+- Workbook: scritto dall'inizio
+
+Il workbook è la struttura che devono avere i documenti che il progetto produce. Deve essere aggiornato e mantenuto.
+
+\section{I modelli a Bazaar}
 
 
 \end{document}
