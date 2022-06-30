@@ -97,6 +97,76 @@ Nello sviluppo di un grande progetto è necessaria comunicazione di tre tipi:
 Il workbook è la struttura che devono avere i documenti che il progetto produce. Deve essere aggiornato e mantenuto.
 
 \section{I modelli a Bazaar}
+Eric Raymond nota il successo di progetti bottom-up come il kernel Linux, che definisce a Bazaar, l'opposto del modello a cattedrale.
+
+Il kernel di Linux è un progetto di dimensioni enormi dove hanno collaborato molte persone, nonostante questo ha funzionato.
+
+Il modo di lavorare di Linus Torvalds era molto distante dalla solita cattedrale del tempo, si rilascia spesso e in anticipo il software, si accettavano proposte da tutti, assomigliava molto a un bazaar.
+
+Osservando Linux e sviluppando un software di mail, Eric, inizia a imparare delle lezioni sul perché il modello a bazaar funziona, nonostanza secondo Brooks non dovesse funzionare.
+
+1. Ogni buon progetto software inizia risolvendo un fastidio personale di uno sviluppatore.
+A Eric serviva un client di mail POP con una determinata feature.
+
+2. Un buon programmatore sa cosa scrivere, uno molto bravo sa cosa riscrivere e riutilizzare.
+L'autore decide di prendere client fatti da altri e aggiungere la sua feature.
+
+3. Metti in conto di buttarne via uno, lo farai in ogni caso.
+Eric trova un software che si adatta meglio alla sua necessità e decide di abbandonare il lavoro precedente.
+
+4. Con l'atteggiamento giusto, verrai trovato da problemi interessanti.
+Il secondo client a cui Eric a contribuito passa interamente nelle sue mani.
+
+5. Quando perdi interesse per un programma, il tuo ultimo dovere è di consegnarlo a un successore competente.
+Perché il precedente proprietario aveva perso interesse.
+
+6. Trattare i tuoi utenti come co-sviluppatori è il modo più veloce per migliorare il codice e trovare bug.
+Molti utenti di Linux erano bravi a programmare, se invogliati possono aiutare trovare bug molto più velocemente, se il codice è open source. 
+
+7. Rilascia in anticipo. Rilascia spesso. E ascolta i tuoi clienti.
+Rilasciare Linux in uno stato ancora pieno di bug ha funzionato perché gli utenti erano contenti e hanno aiutato a trovare i bug velocemente, al contrario di un modello a cattedrale dove sarebbero passati mesi.
+
+8. Legge di Linus: Dato un numero sufficiente di occhi, tutti i bug vengono a galla.
+Con la prospettiva di contribuire a qualcosa di grande e ottenere gratificazioni molti sviluppatori hanno aiutato a risolvere i problemi di Linux. Linus era disposto a rilasciare versioni anche con seri problemi.
+Fare debug è un'attività parallelizzabile.
+Per limitare l'impatto sugli utenti, Linux veniva rilasciato in versioni stabili e meno stabili.
+Una cosa importante da notare è che se entrambe le parti (utente e sviluppatore) conoscono il codice sottostante, è molto più semplice identificare il bug.
+La legge di Brooks viene resa inefficace dal fatto che non tutti devono comunicare con tutti in un modello a bazaar.
+
+9. Strutture dati furbe e del codice stupido, funzionano molto meglio rispetto al contrario.
+Quando Eric ha riscritto il client di mail, in molti casi riorganizzato la struttura per capirla meglio.
+
+10. Se tratti i tuoi beta-tester come se fossero la tua risorsa più preziosa, risponderanno diventando la tua risorsa più preziosa.
+Eric ha coinvolto molto i suoi utenti durante lo sviluppo del software, mandando aggiornamenti costanti e incoraggiando a partecipare.
+
+11. La cosa migliore dopo avere buone idee è riconoscere le buone idee dei tuoi utenti. A volte quest'ultima è meglio.
+Un utente ha suggerito la soluzione a un problema con SMTP, che ha portato alla soluzione migliore.
+
+12. Spesso, le soluzioni più sorprendenti e innovative derivano dal rendersi conto che la tua concezione del problema era sbagliata.
+Un problema più grande è stato risolto ripendando interamente il programma e rimuovendone una grande parte, nonostante Eric abbia esitato all'inizio.
+
+13. La perfezione (nel design) non si raggiunge quando non c'è più niente da aggiungere, ma quando non c'è più niente da togliere.
+È stato possibile migliorare il programma rimuovendo le parti inutili.
+
+14. Qualsiasi strumento dovrebbe essere utile se usato come previsto, ma uno strumento davvero eccezionale si presta ad usi che non ti saresti mai aspettato.
+In seguito, applicare un protocollo nel software, ha portato a risolvere problemi precedenti in modo molto più semplice.
+
+15. Quando scrivi un software gateway di qualsiasi tipo, sforzati di disturbare il meno possibile il flusso di dati e non buttare mai via le informazioni a meno che il destinatario non ti costringa a farlo.
+Fortunatamente Eric ha lasciato intoccato l'ultimo bit nei caratteri ASCII, in seguito ha potuto adottare MIME con molta facilità.
+
+16. Quando il linguaggio non è Turing-completo, lo zucchero sintattico può essere tuo amico.
+Eric non è un fan dei linguaggi che assomigliano troppo all'inglese.
+
+17. Un sistema di sicurezza è sicuro finché è segreto. Attenzione agli pseudo-segreti.
+L'autore ha evitato di implementare una funzione suggerita da un utente perché avrebbe dato un falso senso di sicurezza.
+
+18. Per risolvere un problema interessante, inizia trovando un problema che ti interessa.
+Il modello a bazaar funziona se il progetto ha una base di utenti abbastanza interessata, non è possibile far partire un progetto a bazaar da zero. Gli sviluppatori non devono avere ego in quello che scrivono e devono essere aperti a commenti e modifiche.
+
+19. A condizione che il coordinatore dello sviluppo disponga di un mezzo di comunicazione come Internet, e sappia come guidare senza coercizione, molte teste sono inevitabilmente migliori di una.
+Linus è riuscito a creare un sistema dove molti sviluppatori hanno potuto esprimere il loro ego rimanendo altruisti.
+
+\section{Il Kibbutz}
 
 
 \end{document}
