@@ -311,3 +311,195 @@ con tre diversi kernel del sistema operativo.
     impacchettati in un modulo isolato. La soluzione Debian a questo problema segue un approccio orientato agli aspetti: particolari eventi speciali del ciclo di vita del pacchetto sono esposti ad altri
     pacchetti e possono, inconsapevolmente dal punto di vista degli altri pacchetti, introdurre azioni che saranno eseguite quando questi eventi si verificheranno. 
 \end{document}
+
+\chapter{Git workflows}
+L'utilizzo dei branch in git è fondamentale, si può procedere a piacere o utilizzare delle tecniche già collaudate.
+
+\section{GitFlow}
+Un modello di branching diventato molto popolare si chiama GitFlow, è stato concepito nel 2010 e si adatta bene a software che vengono rilasciati a versioni, mentre l'autore ne sconsiglia l'uso nelle webapp.
+
+Fare branch e merge è molto semplice in git, per questo possono essere utilizzati senza paura.
+
+In GitFlow si inizia creando una repo centralizzata, chiamata 'origin', che contiene la 'truth'. Ogni sviluppatore effettua 'pull' e 'push' con 'origin', in più è possibile effettuare dei 'fetch' tra diversi sviluppatori e creare dei sotto-team.
+
+I due branch più importanti sono 'master' e 'develop'. Hanno vita infinita rispetto agli altri branch. Consideriamo 'master' il branch principale, dove il codice sorgente riflette sempre uno stato 'production-ready' (che può andare nelle mani dei clienti). Il branch 'develop' agisce come branch di integrazione, è dove si trovano i delivered per la prossima release, è la base per creare le nightly builds.
+
+Quando il codice in 'develop' raggiunge un punto stabile, viene effettuato il branch su 'master' e viene assegnato un tag col numero di versione. Per definizione i commit in 'master' sono rilasci di nuove versioni, può essere presente un 'hook' che rilascia la versione ai clienti.
+
+Ci sono poi dei branch con vita limitata:
+- Feature branches
+- Release branches
+- Hotfix branches
+Questi branch seguono delle regole specifiche. È importante notare che questa è una convenzione, tutti i branch in git sono uguali.
+
+I feature branches:
+- Devono partire da 'develop'
+- Devono effettuare merge in 'develop'
+- Si possono chiamare in qualunque modo tranne che 'master', 'develop', 'release-*', 'hotfix-*'
+In questo branch si sviluppa una nuova feature, non si sa ancora in che release verrà aggiunta, entrerà nella prossima release quando verrà effettuato il merge, oppure verrà eliminata. Il merge deve essere effettuato in modalità no-ff in modo da mantenere la storia del feature branch.
+
+I release branches:
+- Devono partire da 'develop'
+- Devono effettuare merge in 'develop' e 'master'
+- Devono chiamarsi 'release-*'
+Si utilizza questo branch per gli ultimi preparativi per rilasciare la versione, come ad esempio bugfix o sistemare i metadati. Una volta creato il release branch, il branch 'develop' può ricevere le feature della prossima release. Il branch viene creato quando tutte le feature su 'develop' sono abbastanza stabili e pronte al rilascio. Il nome del branch decide il numero di versione.
+Quando la release è pronta si fa merge su 'master', e si assegna il tag della versione, poi si fa merge su 'develop' per portare i bugfix effettuati sul release branch.
+
+Gli hotfix branches:
+- Devono partire da 'master'
+- Devono effettuare merge in 'develop' e 'master'
+- Devono chiamarsi 'hotfix-*'
+Si comportano come i release branches, ma vengono creati quando una situazione di emergenza in produzione richiede un fix immediato. Se esiste un release branch, al posto di fare merge in 'develop' bisogna fare merge in quello di release. L'hotfix arriverà comunque a 'develop' da release.
+
+\section{Limiti di git e la pull request}
+Git da se offre solo un livello di autorizzazione e nessun livello di tipo review. La pull request permette a un collaboratore di aggiungere delle modifiche a una repo di un altro sviluppatore.
+
+I progetti open source soffrono di questi limiti e certi ambienti di hosting hanno provato a risolversi, ad esempio con nuovi meccanismi o workflow come GitHub Flow.
+
+Il meccanismo di fork permette di mantenere legami tra repo su un sito di hosting ma con owner e autorizzazioni diverse.
+
+Viene prevista una fase di review tra la pull request e il merge della pull request.
+
+\section{Gerrit}
+Gerrit è un server git che fornisce:
+- Revisioni del codice: revisionare un commit prima di effettuare un merge
+- Controllo degli accessi: permessi di lettura e scrittura specifici per branch
+Gerrit mappa i suoi concetti su git, serve solo un client git standard per usarlo. Per mandare un commit in review si utilizza il prefisso 'refs/for/'.
+
+La webapp di Gerrit permette di vedere i commit in review con i relativi diff. Si possono aggiungere commenti e voti. I voti sono divisi per labels (categorie) e alcuni sono bloccanti (veto) mentre altri possono essere assegnati automaticamente, i voti determinano l'approvazione del commit.
+
+Si introducono i ruoli di Approver e Verifier.
+
+L'Approver deve determinare:
+- I cambiamenti sono adatti allo scopo del progetto?
+- I cambiamenti si adattano all'architettura del progetto?
+- I cambiamenti introducono falle che potrebbero causare problemi in futuro?
+- Le best practice del progetto sono state rispettare?
+- I cambiamenti sono un buon modo per eseguire la funzione descritta?
+- Vengono introdotti rischi per la sicurezza o per la stabilità?
+Può rispondere con LGTM (Looks Good To Me).
+
+Il Verifier deve:
+- Applicare il cambiamento in locale
+- Fare una build e testarla
+Può rispondere con Verified o Fails.
+
+\chapter{Dependency Hell}
+Finora abbiamo visto la tar-pit e come sviluppare in gruppo può creare difficoltà nella comunicazione e nella divisione del lavoro. È necessario coordinarsi e uno strumento disponibile sono i software di configuration management, attraverso questi si controlla l'evoluzione e la revisione dei manufatti.
+
+Collaborare in modo ordinato richiede uno sforzo che eccede scrivere soltanto del codice. Per inserire il proprio lavoro in uno sforzo collettivo ci vogliono parecchie energie e bisogna rispettare policy del gruppo (azienda o kibbutz).
+
+Le applicazioni dipendono da:
+- Kernel
+- Device drivers
+- Librerie di sistema
+- Librerie di supporto
+
+Se il linguaggio è interpretato, le librerie di sistema non sono solitamente una cosa a cui pensare, rimane il problema delle librerie di supporto.
+Utilizzare una libreria è utile perché non è necessario reinventare ciò che esiste già, molti cadono nel tranello della sindrome Not Invented Here (rifare qualcosa che esiste già solo per farlo in casa).
+Esiste il rischio di aggiungere troppe librerie (e quindi dipendenze) inutili, che può avere consegueze catastrofiche. Solitamente l'aggiunta di una libreria va documentata e motivata.
+
+Distributori di pacchetti come Debian devono il loro successo a una documentazione ricca delle dipendenze. Ogni pacchetto ha un control file che ne specifica le caratteristiche, le dipendenze vengono classificate come:
+- Depends: un pacchetto non viene configurato se la lista di questi pacchetti non è stata configurata.
+- Recommends: una dipendenza forte ma non obbligatoria, il pacchetto tecnicamente funziona lo stesso senza.
+- Suggests: un pacchetto è più utile se utilizzato con questa lista di pacchetti, ma è ragionevole usarlo anche senza.
+- Enhances: il contrario di Suggests, si dichiara qui che un pacchetto può migliorare l'utilizzo di un altro.
+- Pre-Depends: come Depends ma viene forzata l'installazione dei pacchetti necessari prima di installare questo pacchetto.
+
+Un pacchetto Debian può avere degli script che vengono eseguiti prima o dopo che un pacchetto viene installato o rimosso.
+Ogni pacchetto Debian ha una priorità:
+- Required: necessari al funzionamento del sistema, permettono il boot e l'installazione di altro software.
+- Important: pacchetti che si dovrebbero trovare un sistema tipo Unix.
+- Standard: pacchetti che si trovano su un sistema Linux, permettono limitate operazioni come scaricare file.
+- Optional: pacchetti che nel dubbio si vorrebbero installare e che non hanno requisiti particolari, tipo TeX.
+- Extra: pacchetti da installare solo se servono e che possono generare conflitti.
+- Essential: pacchetti che il package manager si riufuta di rimuovere.
+Un'installazione Debian di default si ferma a Standard.
+
+Il dependency hell sorge quando diversi pacchetti hanno dipendenze dagli stessi pacchetti o librerie condivise, ma dipendono da versioni diverse e incompatibili dei pacchetti condivisi. 
+Se il pacchetto o la libreria condivisi possono essere installati solo in una singola versione, l'utente potrebbe dover risolvere il problema ottenendo versioni più recenti o precedenti dei pacchetti dipendenti. Questo, a sua volta, potrebbe interrompere altre dipendenze e spingere il problema a un altro set di pacchetti.
+Una forma di dependency hell molto nota è il "DLL hell" di Microsoft Windows. Le DLL sono l'implementazione di Microsoft di librerie condivise. Le librerie condivise consentono di raggruppare codice comune in un wrapper, la DLL, che viene utilizzata da qualsiasi software applicativo sul sistema senza caricare più copie in memoria.
+
+Il problema è dato dall'installazione system-wide delle librerie, per questo spesso vogliamo installazioni specifiche per utente o applicazione.
+In Python è possibile creare un 'virtualenv' dove installare librerie specifiche per applicazione, senza installare sul sistema. Tuttavia questo può portare a molti duplicati e altri problemi.
+
+\chapter{Versionamento Semantico}
+Dato un numero di versione MAJOR.MINOR.PATCH, si incrementa:
+- Versione MAJOR quando apporti modifiche con API incompatibili
+- Versione MINOR quando si aggiungono funzionalità compatibili con versioni precedenti delle API
+- Versione PATCH quando si apportano correzioni di bug compatibili con le versioni precedenti
+
+Il versionamento semantico aiuta a capire la compatibilità di certe dipendenze in modo da uscire facilmente dal dependency hell.
+
+\chapter{Build Automation}
+Costruire (assemblare) un prodotto software fatto di molti componenti è tutt'altro che banale:
+- Dipendenze da componenti che non controlliamo (dependency hell)
+- Dipendenze fra componenti che stiamo sviluppando
+
+\section{Make}
+Uno strumento che aiuta nella build di un software è Make. Make è uno strumento di automazione della compilazione che crea automaticamente programmi eseguibili e librerie dal codice sorgente leggendo file chiamati Makefile che specificano come derivare il programma di destinazione.
+
+Come funziona Make:
+- Le dipendenze definiscono un grafo aciclico che ammette un unico ordinamento topologico (in quanto si passa una sola volta da ogni target)
+- I processi di generazione (recipes) sono eseguiti seguendo l’ordinamento topologico
+- Nei make moderni è possibile eseguire processi di generazione indipendenti in parallelo
+
+Il modello di make assume un ambiente di build fisso. L’ipotesi è irrealistica perfino nel mondo dello sviluppo anni ’70 (C/UNIX). Compilatori, librerie cambiano molto anche nell’ambito degli standard.
+
+\section{Autotools}
+GNU Autotools è una suite di strumenti di programmazione progettati per aiutare a rendere i pacchetti di codice sorgente portabili su molti sistemi Unix-like.
+Può essere difficile rendere portabile un programma software: il compilatore C differisce da sistema a sistema; alcune funzioni di libreria mancano su alcuni sistemi; i file di intestazione possono avere nomi diversi. 
+Un modo per gestirlo è scrivere codice condizionale, con blocchi di codice selezionati per mezzo di direttive del preprocessore (#ifdef); ma a causa dell'ampia varietà di ambienti di costruzione questo approccio diventa rapidamente ingestibile. 
+Autotools è progettato per affrontare questo problema in modo più gestibile:
+- 'configure' verifica le caratteristiche dell’ambiente di costruzione
+- genera un config.h con le #define giuste
+- genera un Makefile
+
+\section{Apache Ant}
+Apache Ant è uno strumento software per l'automazione dei processi di compilazione del software in sostituzione dello strumento di compilazione Make di Unix. È simile a Make, ma è implementato utilizzando il linguaggio Java e richiede la piattaforma Java. A differenza di Make, che usa il formato Makefile, Ant usa XML per descrivere il processo di compilazione del codice e le sue dipendenze.
+
+\section{Gradle}
+Gradle è uno strumento di automazione delle build per lo sviluppo di software multilinguaggio. Controlla il processo di sviluppo nelle attività di compilazione e confezionamento fino a test, distribuzione e pubblicazione. I linguaggi supportati includono Java (oltre a Kotlin, Groovy, Scala), C/C++ e JavaScript.
+Gradle si basa sui concetti di Apache Ant e Apache Maven e introduce un linguaggio domain-specific basato su Groovy e Kotlin rispetto a XML utilizzato da Ant/Maven. Gradle utilizza un grafico aciclico diretto per determinare l'ordine in cui è possibile eseguire le attività, fornendo la gestione delle dipendenze. Funziona su Java Virtual Machine.
+Raccoglie anche dati statistici sull'utilizzo delle librerie software in tutto il mondo.
+
+\chapter{Continuos Integration e Delivery}
+La Continuous Integration è una pratica di sviluppo software in cui i membri di un team integrano il proprio lavoro frequentemente, di solito ogni persona integra almeno quotidianamente, portando a più integrazioni al giorno. Ogni integrazione viene verificata da una build automatizzata (compreso il test) per rilevare gli errori di integrazione il più rapidamente possibile. Molti team ritengono che questo approccio porti a problemi di integrazione significativamente ridotti e consenta a un team di sviluppare software coeso più rapidamente.
+
+Operazioni della Continuos Integration:
+- Configuration Management
+- Esplicitazione delle dipendenze
+- Test d'unità, d'integrazione, d'accettazione
+- Build automatizzate
+- Deployment simulato o automatizzato
+
+Tradizionalmente, l’integrazione è una delle parti più lunghe e rischiose dei progetti software. L'integrazione continua (incrementale) minimizza il rischio di fallimento.
+
+Processo di Continuous Integration (almeno una volta al giorno):
+1. Lavoro su una copia locale sulla macchina di sviluppo
+2. Build vs. Compile: oltre alla costruzione esecuzione di test
+3. Build funzionante sulla macchina di sviluppo
+4. Caricamento sulla macchina d’integrazione
+5. Build funzionante sulla macchina d’integrazione
+
+Il Continuous Integration è cambiato nel tempo, ad oggi è molto facile creare branch.
+Si può creare un CI Server che monitora, ad esempio, GitHub, effettua l'integrazione, esegue i test e fornisce i feedback.
+
+Il build non dovrebbe impiegare più di 10 minuti, altrimenti si perde il feedback immediato. Che fare se è necessario più tempo?
+- Deployment pipeline: il build è spezzato in più fasi: commit build, slower tests build, ecc.
+- Il commit build impiega meno di 10 min, il resto parte poi
+
+Il sistema dove avviene l’integrazione dovrebbe essere il più possibile "simile" a quello di produzione.
+Il deployment verso l’ambiente di produzione può essere automatizzato (garantendo così un maggior controllo sulla effettiva configurazione in uso!).
+
+\section{Sottomoduli Git}
+Succede spesso che mentre si lavora su un progetto, è necessario utilizzare un altro progetto al suo interno. Forse è una libreria sviluppata da una terza parte o che stai sviluppando separatamente e utilizzando in più progetti. In questi scenari si pone un problema comune: si desidera essere in grado di trattare i due progetti come separati ma allo stesso tempo essere in grado di utilizzarne uno dall'interno dell'altro.
+
+Il problema con l'inclusione della libreria è che è difficile personalizzare la libreria in qualsiasi modo e spesso è più difficile distribuirla, perché è necessario assicurarsi che ogni client disponga di quella libreria. Il problema con la copia del codice nel tuo progetto è che tutte le modifiche personalizzate apportate sono difficili da unire quando nuove modifiche a monte diventano disponibili.
+
+Git risolve questo problema usando i sottomoduli. I sottomoduli ti consentono di mantenere un repository Git come sottodirectory di un altro repository Git. Ciò ti consente di clonare un altro repository nel tuo progetto e mantenere separati i tuoi commit.
+
+Le dipendenze sono necessarie quanto un pericolo. C'è il rischio della sindrome NIH ed è opportuno evidenziare quelle utilizzate e chiarirle.
+
+A volte le dipendenze sono richieste dal cliente o sono necessarie per integrarsi a sistemi esistenti.
+Le dipendenze si trovano anche nella progettazione (UML), nel codice e nel testing (junit) e durante il deploy (pacchettizzazioni, build automation, docker).
