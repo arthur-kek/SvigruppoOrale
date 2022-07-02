@@ -503,3 +503,92 @@ Le dipendenze sono necessarie quanto un pericolo. C'è il rischio della sindrome
 
 A volte le dipendenze sono richieste dal cliente o sono necessarie per integrarsi a sistemi esistenti.
 Le dipendenze si trovano anche nella progettazione (UML), nel codice e nel testing (junit) e durante il deploy (pacchettizzazioni, build automation, docker).
+
+\chapter{Divisione del lavoro}
+Vogliamo suddividire il lavoro senza la continua necessità di coordinazione. Perché un sottogruppo di lavoro possa procedere in "isolamento" dovrebbe conoscere i componenti sviluppati da altri (o che altri svilupperanno). Cioè il loro comportamento:
+- In situazioni fisiologiche (correttezza): il grado in cui un sistema o un componente è esente da difetti nella sua specifica, progettazione e implementazione.
+- In situazioni patologiche (robustezza): il grado in cui un sistema o un componente può funzionare correttamente in presenza di input non validi o condizioni ambientali stressanti.
+
+A questo scopo è quindi necessario specificare il funzionamento del sistema.
+Una specifica è una descrizione delle proprietà del marchingegno/componente utilizzato per risolvere un problema (a sua volta definito dai requisiti di progetto). Le specifiche, perciò, sono una descrizione delle parti che compongono la soluzione: le modalità computazionali però sono lasciate impredicate. (What vs. How)
+
+Le specifiche costituiscono naturalmente l'interfaccia fra gruppi che si suddividono l'implementazione di un sistema complesso.
+Il coordinamento rimane necessario a livello di specifica: ma accordarsi su "cosa" sembra più facile che sul "come".
+I sottogruppi avranno la responsabilità di aderire alle specifiche nelle loro implementazioni.
+
+Ci sono una serie di "interface faults" (Perry & Evangelist) che emergono nei sistemi complessi, ad esempio aggiungere funzionalità o problemi di performance.
+
+\section{Asserzioni}
+Il meccanismo base per monitorare/verificare l'aderenza di una implementazione alle specifiche (e ridurre gli interface fault): le asserzioni.
+L'asserzione è un'espressione logica che specifica uno stato del programma che deve esistere o un insieme di condizioni che le variabili del programma devono soddisfare in un punto particolare durante l'esecuzione del programma. Una funzione o una macro che si lamenta a gran voce se un presupposto di progettazione su cui si basa il codice non è vero.
+
+Le asserzioni sono presenti in ogni maggiore linguaggio di programmazione, ci sono dei patter per utilizzare le asserzioni.
+
+\chapter{Design by Contract}
+Se usate estensivamente, le asserzioni possono costituire una vera e propria specifica delle componenti del sistema.
+L'idea della progettazione per contratto (B. Meyer, 1986) è che il linguaggio per descrivere specifiche e implementazioni è lo stesso: la specifica è parte integrante del codice del sistema.
+La specifica è parte del "contratto" secondo cui ciascun componente fornisce i propri servizi al resto del sistema.
+
+\section{Tripla di Hoare}
+{P}S{Q}
+
+Ogni esecuzione di S che parta da uno stato che soddisfa la condizione P (pre-condizione) termina in uno stato che soddisfa la condizione Q (post-condizione).
+Ogni programma che termina è corretto se e solo se vale la proprietà precedente.
+
+La tripla di Hoare {P}S{Q} può diventare un contratto fra chi implementa (fornitore) S e chi usa (cliente) S.
+L'implementatore di S si impegna a garantire Q in tutti gli stati che soddisfano P.
+L'utilizzatore di S si impegna a chiedere il servizio in un stato che soddisfa P ed è certo che se S termina, si giungerà in uno stato in Q vale.
+Il lavoro dell'implementatore è particolarmente facile quando: Q è True (vera per ogni risultato!) o quando P è False (l’utilizzatore non riuscirà mai a portare il sistema in uno stato in cui tocchi fare qualcosa!). Weakest precondition (data Q) o strongest postcondition (data P) determinano il ruolo di una feature.
+
+Eiffel è linguaggio object-oriented che introduce i contratti nell'interfaccia delle classi. Il contratto di default per un metodo ("feature") F è {True}F{True}.
+
+\chapter{Eiffel}
+Eiffel è esplicitamente progettato come linguaggio "di progetto", non solo “di programmazione”.
+Ecma standard 367: specify, design, implement and modify quality software.
+"Programmazione in grande" con oggetti, derivati da classi organizzate in gerarchie di ereditarietà e raggruppate in cluster, che forniscono feature (command o query) ai loro client.
+
+Asserzioni in Eiffel:
+- Pre/Post condizioni
+- Invarianti di classe
+- Asserzioni
+- Loop invariant
+
+Le invarianti di classe sono condizioni che devono essere vere in ogni momento "critico", ossia osservabile dall’esterno. In pratica è come se facessero parte di ogni pre- e post-condizione.
+È possibile avere un supporto run-time alle violazioni: se una condizione non vale viene sollevata un'eccezione. L'eccezione porta il sistema nel precedente stato stabile ed è possibile:
+- Terminare con un fallimento
+- Riprovare
+
+Spesso si scrivono le "stesse" cose due volte: implementazione e specifica.
+Il client è responsabile delle precondizioni, il fornitore di postcondizioni e invarianti.
+
+\section{Design by Contract in Eiffel}
+Il principio di sostituzione di Liskov stabilisce che, perché un oggetto di una classe derivata soddisfi la relazione 'is-a', ogni suo metodo:
+- Deve essere accessibile a pre-condizioni uguali o più deboli del metodo della superclasse
+- Deve garantire post-condizioni uguali o più forti del metodo della superclasse 
+Altrimenti il "figlio" non può essere sostituito al "padre" senza alterare il sistema.
+
+Un modo per garantire che le condizioni siano automaticamente vere consiste nell'assumere implicitamente che, se la classe evoluta specifica esplicitamente una precondizione P e una postcondizione Q, le reali pre- e post-condizioni siano:
+- PREderived = PREparent ∨ P
+- POSTderived = POSTparent ∧ Q
+
+In Eiffel: 'require else' e 'ensure then'.
+
+Quando una feature accetta dei parametri il tipo del parametro formale è chiaramente una implicita precondizione: infatti limita il dominio di ciò che l’implementatore deve trattare. Il tipo del valore di ritorno costituisce invece una promessa, esattamente come le postcondizioni. 
+Inevitabilmente, quindi, per evitare errori di tipo occorre aderire al principio di Liskov anche nel trattamento dei parametri. C’è un modo facile di ottenerlo, adottato dalla maggior parte dei linguaggi orientati agli oggetto e staticamente tipizzati (come Java e C++): le ridefinizioni (i metodi ereditati) non possono cambiare il tipo dei parametri, sia di quelli in "ingresso", che di quelli in "uscita" come il valore di ritorno: nel gergo dei linguaggi di programmazione questa scelta è detta "novarianza".
+La novarianza a volte può però essere troppo vincolante per progettisti che troverebbero in qualche caso più "naturale" restringere il dominio dei parametri di ingresso. Per questo motivo Eiffel fa una scelta piuttosto controcorrente: la ridefinizione può essere covariante cioè ammettere parametri (in ingresso) di sottotipi, infrangendo così il principio di Liskov. Si noti che una varianza in senso opposto (controvarianza) in cui i parametri posso essere sopra-tipi sarebbe invece del tutto accettabile dal punto di vista del principio di Liskov: si tratta in effetti di una possibilità esplorata in alcuni linguaggi (e.g. Sather) ma risultata poco utile e tutto sommato meno naturale anche della novarianza.
+
+Infrangere il principio di Liskov porta a possibili errori, per questo in Eiffel esiste la 'catcall', un'eccezione sollevata quando ci si aspettava un sotto-tipo e si riceve un tipo che ha tutti i medodi che servivano.
+
+\section{Violazioni del contratto}
+Nel modello di Eiffel hanno un ruolo importante le eccezioni, che vengono trattate in un modo differente da quello dei più diffusi linguaggi di programmazione.
+Un'eccezione è un evento di runtime che può causare il fallimento di una chiamata di routine (violazione del contratto). Un errore di una routine provoca un'eccezione nel suo chiamante.
+
+Sicuramente c'è un difetto.
+Se il contratto è corretto:
+- Violazione delle precondizioni: responsabile è il client
+- Violazione delle postcondizioni o invarianti: responsabile è l'implementatore
+
+Due modalità per trattare le eccezioni:
+- Fallimento (panico organizzato): ripulire l'ambiente, terminare la chiamata e segnalare il guasto al chiamante.
+- Retry: tenta di modificare le condizioni che hanno portato all'eccezione e di eseguire nuovamente la routine dall'inizio.
+Per trattare il secondo caso, Eiffel introduce il costrutto 'rescue/retry'. Se il corpo del 'rescue' non fa 'retry', si ha un failure.
