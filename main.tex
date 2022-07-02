@@ -19,6 +19,7 @@
 
 
 \begin{document}
+\tableofcontents
 \chapter{Introduzione}
 Mentre nei corsi di programmazione solitamente c'è 1 programmatore che scrive algoritmi per una sola macchina, in un contesto più grande ci sono molti programmatori, suddivisi in team, che rispondono a vari committenti e realizzano sistemi e componenti che devono essere anche mantenuti.
 
@@ -274,7 +275,8 @@ con tre diversi kernel del sistema operativo.
     per Emacs provenienti da fonti diverse. L'applicazione delle politiche è perseguita a diversi livelli, al fine di sfruttare la convalida incrociata per ridurre al minimo l'inconsistenza dei pacchetti incoerenti:
     \begin{itemize}
         \item durante l'assemblaggio dei pacchetti: la maggior parte delle politiche sono associate ad uno strumento (chiamato collettivamente "debhelper") che ne garantisce la corretta applicazione;
-        \item durante il test del pacchetto: esistono diversi strumenti per verificare la conformità alle politiche prima di caricare il pacchetto nel repository pubblico. Il più importante è lintian, uno script che analizza un pacchetto alla ricerca di una trentina di
+        \item durante il test del pacchetto: esistono diversi strumenti per verificare la conformità alle politiche prima di caricare il pacchetto nel repository pubblico. Il più importante è lintian, uno script che analizza 
+        un pacchetto alla ricerca di una trentina di
             categorie di violazioni delle policy. Inoltre, quando un pacchetto viene caricato su un repository pubblico viene rifiutato se i controlli falliscono;
         \item durante la distribuzione del pacchetto: ogni utente che rileva una incoerenza può segnalare un bug con una procedura automatica (reportbug).
     \end{itemize}
@@ -310,285 +312,548 @@ con tre diversi kernel del sistema operativo.
     In qualsiasi sistema sufficientemente complesso, ci sono problemi trasversali all'intero sistema e che non possono essere facilmente
     impacchettati in un modulo isolato. La soluzione Debian a questo problema segue un approccio orientato agli aspetti: particolari eventi speciali del ciclo di vita del pacchetto sono esposti ad altri
     pacchetti e possono, inconsapevolmente dal punto di vista degli altri pacchetti, introdurre azioni che saranno eseguite quando questi eventi si verificheranno. 
-\end{document}
 
-\chapter{Git workflows}
+\chapter{Metodologia Agile}
+    La "metodologia agile" è un approccio allo sviluppo del software basato sulla distribuzione continua di software efficienti creati in modo rapido e iterativo. 
+    
+    Benché l'espressione faccia riferimento specifico a un determinato sviluppo del software, questa metodologia non prevede regole da rispettare tassativamente nell'ambito dello sviluppo del software. Si tratta piuttosto di un tipo di approccio alla collaborazione e ai 
+    flussi di lavoro fondato su una serie di valori in grado di guidare il nostro modo di procedere.
+    
+    In pratica, le metodologie di sviluppo software agile consistono nel rilasciare rapidamente modifiche al software in piccole porzioni con l'obiettivo di migliorare la soddisfazione dei clienti. Le metodologie utilizzano approcci flessibili e il lavoro di 
+    gruppo per concentrarsi sul miglioramento continuo. Con l'adozione dello sviluppo agile i vari team, costituiti da pochi sviluppatori ciascuno, si organizzano in autonomia e collaborano direttamente con i rappresentanti aziendali tramite incontri periodici durante 
+    l'intero ciclo di vita dello sviluppo del software. La metodologia agile consente di adottare un approccio più leggero alla stesura della documentazione software e di integrare le modifiche in qualsiasi fase del ciclo di vita, anziché ostacolarle.
+
+\section{I valori Agili}
+    La metodologia agile, come la conosciamo oggi, risale al 2001. Nel tentativo di trovare un'alternativa al project management "a cascata", che struttura un progetto software in una serie di sequenze lineari, un gruppo di sviluppatori software ha delineato un nuovo metodo 
+    redigendo il Manifesto per lo sviluppo agile di software. In questo documento i programmatori propongono un nuovo approccio allo sviluppo del software descrivendo 4 aspetti chiave che a loro parere devono avere la priorità su altri. I team di sviluppo software devono tenere conto di:
+    
+    \begin{itemize}
+        \item \textbf{Individui e interazioni} rispetto a processi e strumenti
+        \item \textbf{Un software efficiente} rispetto a una documentazione esaustiva
+        \item \textbf{La collaborazione con il cliente} rispetto alla negoziazione dei contratti
+        \item \textbf{La preparazione ad affrontare il cambiamento} rispetto all'esecuzione di un piano
+    \end{itemize}
+
+    Gli autori chiariscono comunque che tutti gli aspetti indicati sopra sono importanti, ognuno a suo modo. Sostengono tuttavia che dare la priorità agli aspetti a sinistra (in grassetto) rispetto a quelli a destra può portare a risultati migliori nello sviluppo del prodotto. 
+    Il Manifesto non determina una serie di pratiche da seguire, ma è da intendere come una guida verso un nuovo modo di pensare allo sviluppo del software.
+    
+    Il Manifesto ha portato all'ottenimento di svariati risultati pratici. Ad esempio, anziché sviluppare software in modo sequenziale, ovvero da una fase all'altra, che è il modo in cui il metodo a cascata garantisce la qualità del prodotto, un metodo agile può promuovere lo sviluppo 
+    e il test come processi continui e simultanei. In sostanza, lo sviluppo a cascata presuppone il completamento di una fase prima di poter passare a quella successiva, mentre il modello agile supporta più sequenze contemporanee alla volta. 
+
+\section{Le origini della metodologia Agile}
+    L'approccio agile al lavoro è stato concepito per far fronte ai limiti percepiti del metodo a cascata, che trae le sue sorgenti dal metodo manifatturiero basato sulla catena di montaggio del 1913 di Henry Ford, applicato più tardi allo sviluppo di software. Dalla sua nascita nel 2001, 
+    lo sviluppo agile si è fatto strada nel settore dei software e del project management subendo molti cambiamenti.
+    L'impulso che ha spinto alcuni sviluppatori a introdurre una metodologia agile era legato alla mancata capacità dei cicli di produzione e dei metodi di collaborazione a cascata di portare ai risultati attesi. Questo problema ha iniziato a diffondersi nei primi anni '90, 
+    quando potevano trascorrere anni tra l'identificazione di un'esigenza aziendale e l'erogazione di un'applicazione efficiente volta a risolverla. Quegli anni erano caratterizzati da esigenze di business in costante mutamento, e molti dei progetti software venivano addirittura 
+    annullati prima che fossero erogati. Questa perdita di tempo e di risorse ha portato molti sviluppatori software a cercare un'alternativa.
+    Messe in difficoltà dalle continue innovazioni, le organizzazioni hanno iniziato ad adottare sempre più strategie di trasformazione digitale per tenere il passo con un settore in continua evoluzione. E qui entra in gioco lo sviluppo agile del software.
+    La metodologia agile è alla base di molti flussi di lavoro digitale odierni. Il cloud computing, con la sua infrastruttura IT flessibile e scalabile, è cresciuto di pari passo con le richieste dello sviluppo agile di software. Lo sviluppo cloud native integra 
+    la nozione di software "agile" per ottenere una serie di servizi interconnessi e scalabili volti a soddisfare le esigenze aziendali.
+    Il concetto di DevOps rompe il confine tra sviluppo del software e operazioni. L'approccio SRE (Site Reliability Site Engineering) è un'implementazione di DevOps che prevede l'uso del software come strumento per la gestione dei sistemi e l'automazione di tali operazioni.
+    Tenendo conto della continua evoluzione del software, i metodi CI/CD mettono a disposizione degli sviluppatori gli strumenti necessari per accelerare i tempi di deployment di un nuovo codice.
+    Ne deduciamo quindi che il concetto di "metodologia agile" incorpora un'idea agile in grado di rispondere alle esigenze dei suoi clienti (ovvero, gli sviluppatori software) nel tempo. È importante tenere conto di questo aspetto quando si analizzano alcuni framework agili, 
+    che hanno nomi diversi e spesso variano da un'implementazione all'altra.
+
+\section{Framework Agili}
+    Framework agili per lo sviluppo di software come Scrum, Kanban o Extreme Programming (XP) costituiscono la base dei più famosi processi di sviluppo di software quali DevOps e l'integrazione e il deployment continui (CI/CD).
+    Scrum è forse il framework agile più conosciuto in adozione al giorno d'oggi, sarà discusso nella prossima sezione.
+    Altri framework agili, ad esempio Kanban, precedono il Manifesto agile. Ma questi framework sono considerati agili perché promuovono i valori delineati nel Manifesto agile. I framework agili e gli approcci verso la metodologia agile sono troppi per poterli menzionare tutti in questa sede.
+
+\section{Scrum}
+    Scrum è un approccio basato sulla teoria del controllo empirico dei processi: le decisioni vengono prese sulla base dell’esperienza (empirismo).
+    Tutti gli aspetti del lavoro devono essere visibili ai responsabili del risultato finale (trasparenza). Per rendere trasparenti questi elementi, il Team Scrum ispeziona di frequente il prodotto mentre lo sta sviluppando (ispezione). Così il processo e il prodotto possono essere adattati 
+    immediatamente nel caso di nuove esigenze o di condizioni mutate del mercato (adattamento).
+    Come tutte le metodologie Agile, Scrum si basa sulla divisione del progetto in più fasi, chiamate Sprint.
+    Ad ogni Sprint il gruppo di lavoro presenta nuove funzionalità, operative e implementabili, che vengono fatte valutare al cliente. Si configura così un sistema iterativo che consente di incrementare poco alla volta, ma molto di frequente, le funzionalità del progetto.
+    E allo stesso tempo si può verificare costantemente l’andamento complessivo e la soddisfazione del cliente su quanto già prodotto.
+
+\subsection{Ruoli nello Scrum}
+    Sono 3 i ruoli che vengono individuati nella metodologia Scrum: Product Owner, Scrum Master e Team di Sviluppo.
+\begin{itemize}
+    \item \textbf{Il Product Owner} definisce il lavoro da svolgere e l’ordine con cui viene completato. Raccoglie la voce degli stakeholder (clienti, management e chiunque abbia un interesse nel prodotto), le necessità dell’utente finale, i requisiti del mercato e sulla base di questi elementi 
+        stabilisce le priorità di sviluppo per il Team Scrum.
+    \item \textbf{Lo Scrum Master} è il responsabile del processo, e un leader a servizio (servant-leader) dello Scrum Team. Conoscitore esperto della metodologia Scrum, sa come applicarla e si assicura che il Team comprenda e segua le regole che la caratterizzano, perché il progetto abbia successo.
+    \item \textbf{Il Team di Sviluppo} è la squadra di lavoro, composta da 3 a 9 persone. Anche lo Scrum Master può far parte del Team di Sviluppo. Chi concretamente porta a termine gli Sprint e fornisce le funzionalità da implementare è questo insieme coordinato di persone, autogestito e cross-funzionale.
+\end{itemize}
+    Autogestito perché decide in autonomia come sviluppare le funzionalità individuate dal Product Owner. Cross-funzionale perché contiene al proprio interno tutte le competenze e le funzioni necessarie per portare a termine i task.
+
+\subsection{Eventi nello Scrum}
+    Uno sprint è composto dai seguenti eventi:
+\begin{itemize}
+    \item \textbf{Sprint} è il cuore del framework Scrum. Della durata compresa tra 2 e 4 settimane, ogni Sprint è nella pratica un mini progetto, il cui scopo è presentare un Incremento che risponde ai requisiti di “Fatto”, utilizzabile e potenzialmente rilasciabile.
+    \item \textbf{Sprint Planning} è l’inizio di ogni Sprint: una riunione in cui il Team Scrum concorda l’obiettivo dello Sprint (lo Sprint Goal)
+    \item \textbf{Daily Scrum} è un evento giornaliero di 15 minuti in cui il Team di Sviluppo programma la giornata di lavoro.
+    \item Alla fine di ogni Sprint è prevista una riunione, la \textbf{Sprint Review}, in cui lo Scrum Team discute insieme agli stakeholder l’Incremento realizzato. La riunione serve per dimostrare quanto è stato svolto, e per iniziare a raccogliere gli input per le successive riunioni di Sprint Planning. 
+    \item Dopo la Sprint Review si apre la \textbf{Sprint Retrospective}, un momento formale in cui il Team Scrum analizza lo Sprint concluso, identifica le cose che sono andate bene, individua i miglioramenti che possono essere fatti e pianifica il modo in cui implementarli nello Sprint successivo. Dura al massimo tre ore.
+\end{itemize}
+
+\section{Tecniche di lavoro}
+
+\begin{itemize}
+    \item \textbf{Pair-programming} - si programma in coppie con una sola tastiera
+    \begin{itemize}
+        \item Obbliga a rendere espliciti i ragionamenti
+        \item Aiuta a mantenere il focus sull’obiettivo
+        \item Diffonde la conoscenza totale della codebase (riducendo anche i rischi in caso di assenza di un collaboratore)
+    \end{itemize}
+    \item \textbf{Codice condiviso} - tutto il team `e responsabile di tutto il codice e pu`o modificarlo a piacimento
+    \item \textbf{Refactoring} - Sono piccole trasformazioni che non cambiano la semantica del codice, spesso attuabili automaticamente con un editor “consapevole” del linguaggio di programmazione.
+    \item \textbf{Test-driven Development} Il test di unit`a viene scritto prima dell’unit`a stessa, servendo come “specifica” (ma senza la necessaria generalità!)
+\end{itemize}
+
+
+
+\chapter{Software Configuration Managment}
+Nell'ingegneria del software, la gestione della configurazione del software (SCM o S/W CM) è il compito di tracciare e controllare le modifiche al software, 
+parte del più ampio campo interdisciplinare della gestione della configurazione. Le pratiche di SCM includono il controllo delle revisioni e la creazione di 
+linee di base. Se qualcosa va storto, l'SCM può determinare cosa è stato modificato e chi lo ha fatto. Se una configurazione funziona bene, l'SCM può 
+determinare come replicarla su molti host.
+Di cosa si occupano SCM:
+\begin{itemize}
+    \item Gli artifacts sono file o, più raramente, directory;
+    \item L'SCM permette di tracciare/controllare le revisioni degli artifact e le versioni delle risultanti configurazioni;
+    \item A volte forniscono supporto per la generazione del prodotto a partire da una ben determinata configurazione.
+\end{itemize}
+
+Il meccanismo di base per controllare l'evoluzione delle revisioni è che ogni cambiamento è regolato da:
+\begin{itemize}
+    \item \textbf{check-out} - dichiara la volontà di cambiare un determinato artifact;
+    \item \textbf{check-in} - detto anche commit, dichiara la volontà di registrare un determinato change-set.
+\end{itemize}
+
+Quando il repository è condiviso da un gruppo di lavoro, nasce il problema di gestirne l'accesso concorrente:
+\begin{itemize}
+    \item modello pessimistico - il sistema garantisce l'accesso agli artifact in mutua esclusione attivando un lock al check-out
+    \item modelo ottimistico - il modello si disinteressa del problema e fornisce supporto per le attività di merge di change-set paralleli potenzialmente conflittuali.
+\end{itemize}
+
+\section{Merge}
+Merge è un'oprazione delicata che generalmente viene trattata con strategie diverse:
+\begin{itemize}
+    \item Lavoro parallelo su artifact diversi;
+    \item Lavoro parallelo sullo stesso artifact con hunk diversi;
+    \item Lavoro parallelo sullo stesso artifact con hunk uguali.
+\end{itemize}
+
+\subsection{Terminologia per i merge}
+La terminologia più usata fa riferimento alla coppia di programmi POSIX diff e patch:
+\begin{itemize}
+    \item diff calcola la differenza tra due revisioni R0 e R1 per righe, cercando di minimizzare il numero di inserimenti e cancellazioni;
+    \item patch è il programma che permette si applicare il diff solo a R0 per ottenere R1.
+\end{itemize}
+
+\subsection{3-way merge}
+Qando, come nel caso di lavoro parallelo sullo stesso artifact, le due rvisioni hanno un antenato comune si può facilitare il lavoro di merge.
+Siamo A' e A'' due revisioni, con antenato comune A:
+\begin{itemize}
+    \item hunk uguale nelle tre revisioni - inalterato;
+    \item hunk uguale in due delle tre revisioni:
+    \begin{itemize}
+        \item A' e A'' uguali - merge A'
+        \item A e A' uguali - merge A''
+        \item A e A'' uguali - merge A'
+    \end{itemize} 
+    \item hunk diverso nelle tre revisioni deve essere valutato a mano.
+\end{itemize}
+
+\section{Git}
+Git è un DVCS (Distributed Version Control System), cioè sistema software per il controllo di versione distribuito, realizzato nel 2005 da Linus Torvalds.
+\subsection{Nozioni base di Git}
+\begin{itemize}
+    \item \textbf{file system} - directory in cui si trovano i file;
+    \item \textbf{blob} - il contenuto di un file. Gli oggetti blob non hanno nome, data, ora, né altri metadati. 
+        Git memorizza ogni revisione di un file come un oggetto blob distinto.
+    \item \textbf{tree} - l'equivalente di una directory: contiene una lista di nomi di file, ognuno con alcuni bit di tipo e il nome di un oggetto blob o 
+        albero che è il file, il link simbolico, o il contenuto di directory. Questo oggetto descrive un'istantanea dell'albero dei sorgenti.
+    \item \textbf{commit} (revisione) - collega i tree in una cronologia. Contiene il nome di un oggetto albero (della directory dei sorgenti di livello più alto), 
+        data e ora, un messaggio di archiviazione (log message), e i nomi di zero o più oggetti di commit genitori. Le relazioni tra i blob si possono trovare 
+        esaminando gli oggetti albero e gli oggetti commit.
+    \item \textbf{index} - uno strato intermedio che serve da punto di collegamento fra il database di oggetti e l'albero di lavoro.
+    \item \textbf{database} - ha una struttura semplice. L'oggetto viene messo in una directory che corrisponde ai primi due caratteri del suo codice hash; 
+        Il resto del codice costituisce il nome del file che contiene tale oggetto. 
+    \item \textbf{tag} (etichetta) - un contenitore che contiene riferimenti a un altro oggetto, può tenere meta-dati aggiuntivi riferiti a un altro oggetto. 
+        Il suo uso più comune è memorizzare una firma digitale di un oggetto commit corrispondente a un particolare rilascio dei dati gestiti da Git.
+\end{itemize} 
+I blob sono file binari "non parlanti" che conservano informazioni eterogenee, quali: file testuali o binari, immagini, codice sorgente, archivi. 
+Qualsiasi tipo di file è compresso in un file binario prima di essere salvato in repository Git. Git ne calcola l'hash con l'algoritmo SHA-1.
+
+Come riferirsi ad un commit:
+\begin{itemize}
+    \item Nome - hash del commit (anche le prime lettere);
+    \item Nickname - un tag, un branch, HEAD;
+    \item Parentela:
+    \begin{itemize}
+        \item \^n - ennesimo padre;
+        \item \~n ennesimo antenato.
+    \end{itemize} 
+    \item Data.
+\end{itemize} 
+
+\subsection{Git workflows}
 L'utilizzo dei branch in git è fondamentale, si può procedere a piacere o utilizzare delle tecniche già collaudate.
 
-\section{GitFlow}
+\subsubsection{GitFlow}
 Un modello di branching diventato molto popolare si chiama GitFlow, è stato concepito nel 2010 e si adatta bene a software che vengono rilasciati a versioni, mentre l'autore ne sconsiglia l'uso nelle webapp.
 
 Fare branch e merge è molto semplice in git, per questo possono essere utilizzati senza paura.
 
-In GitFlow si inizia creando una repo centralizzata, chiamata 'origin', che contiene la 'truth'. Ogni sviluppatore effettua 'pull' e 'push' con 'origin', in più è possibile effettuare dei 'fetch' tra diversi sviluppatori e creare dei sotto-team.
+In GitFlow si inizia creando una repo centralizzata, chiamata 'origin', che contiene la 'truth'. Ogni sviluppatore effettua 'pull' e 'push' con 'origin', in più è possibile effettuare dei 'fetch' 
+tra diversi sviluppatori e creare dei sotto-team.
 
-I due branch più importanti sono 'master' e 'develop'. Hanno vita infinita rispetto agli altri branch. Consideriamo 'master' il branch principale, dove il codice sorgente riflette sempre uno stato 'production-ready' (che può andare nelle mani dei clienti). Il branch 'develop' agisce come branch di integrazione, è dove si trovano i delivered per la prossima release, è la base per creare le nightly builds.
+I due branch più importanti sono 'master' e 'develop'. Hanno vita infinita rispetto agli altri branch. Consideriamo 'master' il branch principale, dove il codice sorgente riflette sempre uno stato 'production-ready' 
+(che può andare nelle mani dei clienti). Il branch 'develop' agisce come branch di integrazione, è dove si trovano i delivered per la prossima release, è la base per creare le nightly builds.
 
-Quando il codice in 'develop' raggiunge un punto stabile, viene effettuato il branch su 'master' e viene assegnato un tag col numero di versione. Per definizione i commit in 'master' sono rilasci di nuove versioni, può essere presente un 'hook' che rilascia la versione ai clienti.
+Quando il codice in 'develop' raggiunge un punto stabile, viene effettuato il branch su 'master' e viene assegnato un tag col numero di versione. Per definizione i commit in 'master' sono rilasci di nuove versioni, 
+può essere presente un 'hook' che rilascia la versione ai clienti.
 
 Ci sono poi dei branch con vita limitata:
-- Feature branches
-- Release branches
-- Hotfix branches
+\begin{itemize}
+    \item Feature branches
+    \item Release branches
+    \item Hotfix branches
+\end{itemize}
 Questi branch seguono delle regole specifiche. È importante notare che questa è una convenzione, tutti i branch in git sono uguali.
 
 I feature branches:
-- Devono partire da 'develop'
-- Devono effettuare merge in 'develop'
-- Si possono chiamare in qualunque modo tranne che 'master', 'develop', 'release-*', 'hotfix-*'
-In questo branch si sviluppa una nuova feature, non si sa ancora in che release verrà aggiunta, entrerà nella prossima release quando verrà effettuato il merge, oppure verrà eliminata. Il merge deve essere effettuato in modalità no-ff in modo da mantenere la storia del feature branch.
+\begin{itemize}
+    \item Devono partire da 'develop'
+    \item Devono effettuare merge in 'develop'
+    \item Si possono chiamare in qualunque modo tranne che 'master', 'develop', 'release-*', 'hotfix-*'
+\end{itemize}
+In questo branch si sviluppa una nuova feature, non si sa ancora in che release verrà aggiunta, entrerà nella prossima release quando verrà effettuato il merge, oppure verrà eliminata. 
+Il merge deve essere effettuato in modalità no-ff in modo da mantenere la storia del feature branch.
 
 I release branches:
-- Devono partire da 'develop'
-- Devono effettuare merge in 'develop' e 'master'
-- Devono chiamarsi 'release-*'
-Si utilizza questo branch per gli ultimi preparativi per rilasciare la versione, come ad esempio bugfix o sistemare i metadati. Una volta creato il release branch, il branch 'develop' può ricevere le feature della prossima release. Il branch viene creato quando tutte le feature su 'develop' sono abbastanza stabili e pronte al rilascio. Il nome del branch decide il numero di versione.
+\begin{itemize}
+    \item Devono partire da 'develop'
+    \item Devono effettuare merge in 'develop' e 'master'
+    \item Devono chiamarsi 'release-*'
+\end{itemize}
+Si utilizza questo branch per gli ultimi preparativi per rilasciare la versione, come ad esempio bugfix o sistemare i metadati. Una volta creato il release branch, il branch 'develop' 
+può ricevere le feature della prossima release. Il branch viene creato quando tutte le feature su 'develop' sono abbastanza stabili e pronte al rilascio. Il nome del branch decide il numero di versione.
 Quando la release è pronta si fa merge su 'master', e si assegna il tag della versione, poi si fa merge su 'develop' per portare i bugfix effettuati sul release branch.
 
 Gli hotfix branches:
-- Devono partire da 'master'
-- Devono effettuare merge in 'develop' e 'master'
-- Devono chiamarsi 'hotfix-*'
-Si comportano come i release branches, ma vengono creati quando una situazione di emergenza in produzione richiede un fix immediato. Se esiste un release branch, al posto di fare merge in 'develop' bisogna fare merge in quello di release. L'hotfix arriverà comunque a 'develop' da release.
+\begin{itemize}
+    \item Devono partire da 'master'
+    \item Devono effettuare merge in 'develop' e 'master'
+    \item Devono chiamarsi 'hotfix-*'
+\end{itemize}
+Si comportano come i release branches, ma vengono creati quando una situazione di emergenza in produzione richiede un fix immediato. Se esiste un release branch, al posto di fare merge in 'develop' 
+bisogna fare merge in quello di release. L'hotfix arriverà comunque a 'develop' da release.
 
-\section{Limiti di git e la pull request}
-Git da se offre solo un livello di autorizzazione e nessun livello di tipo review. La pull request permette a un collaboratore di aggiungere delle modifiche a una repo di un altro sviluppatore.
+\subsection{Sottomoduli Git}
+Succede spesso che mentre si lavora su un progetto, è necessario utilizzare un altro progetto al suo interno. Forse è una libreria sviluppata da una terza parte o che stai sviluppando separatamente e utilizzando in più progetti. 
+In questi scenari si pone un problema comune: si desidera essere in grado di trattare i due progetti come separati ma allo stesso tempo essere in grado di utilizzarne uno dall'interno dell'altro.
 
-I progetti open source soffrono di questi limiti e certi ambienti di hosting hanno provato a risolversi, ad esempio con nuovi meccanismi o workflow come GitHub Flow.
+Il problema con l'inclusione della libreria è che è difficile personalizzare la libreria in qualsiasi modo e spesso è più difficile distribuirla, perché è necessario assicurarsi che ogni client disponga di quella libreria. 
+Il problema con la copia del codice nel tuo progetto è che tutte le modifiche personalizzate apportate sono difficili da unire quando nuove modifiche a monte diventano disponibili.
 
-Il meccanismo di fork permette di mantenere legami tra repo su un sito di hosting ma con owner e autorizzazioni diverse.
-
-Viene prevista una fase di review tra la pull request e il merge della pull request.
-
-\section{Gerrit}
-Gerrit è un server git che fornisce:
-- Revisioni del codice: revisionare un commit prima di effettuare un merge
-- Controllo degli accessi: permessi di lettura e scrittura specifici per branch
-Gerrit mappa i suoi concetti su git, serve solo un client git standard per usarlo. Per mandare un commit in review si utilizza il prefisso 'refs/for/'.
-
-La webapp di Gerrit permette di vedere i commit in review con i relativi diff. Si possono aggiungere commenti e voti. I voti sono divisi per labels (categorie) e alcuni sono bloccanti (veto) mentre altri possono essere assegnati automaticamente, i voti determinano l'approvazione del commit.
-
-Si introducono i ruoli di Approver e Verifier.
-
-L'Approver deve determinare:
-- I cambiamenti sono adatti allo scopo del progetto?
-- I cambiamenti si adattano all'architettura del progetto?
-- I cambiamenti introducono falle che potrebbero causare problemi in futuro?
-- Le best practice del progetto sono state rispettare?
-- I cambiamenti sono un buon modo per eseguire la funzione descritta?
-- Vengono introdotti rischi per la sicurezza o per la stabilità?
-Può rispondere con LGTM (Looks Good To Me).
-
-Il Verifier deve:
-- Applicare il cambiamento in locale
-- Fare una build e testarla
-Può rispondere con Verified o Fails.
-
-\chapter{Dependency Hell}
-Finora abbiamo visto la tar-pit e come sviluppare in gruppo può creare difficoltà nella comunicazione e nella divisione del lavoro. È necessario coordinarsi e uno strumento disponibile sono i software di configuration management, attraverso questi si controlla l'evoluzione e la revisione dei manufatti.
-
-Collaborare in modo ordinato richiede uno sforzo che eccede scrivere soltanto del codice. Per inserire il proprio lavoro in uno sforzo collettivo ci vogliono parecchie energie e bisogna rispettare policy del gruppo (azienda o kibbutz).
-
-Le applicazioni dipendono da:
-- Kernel
-- Device drivers
-- Librerie di sistema
-- Librerie di supporto
-
-Se il linguaggio è interpretato, le librerie di sistema non sono solitamente una cosa a cui pensare, rimane il problema delle librerie di supporto.
-Utilizzare una libreria è utile perché non è necessario reinventare ciò che esiste già, molti cadono nel tranello della sindrome Not Invented Here (rifare qualcosa che esiste già solo per farlo in casa).
-Esiste il rischio di aggiungere troppe librerie (e quindi dipendenze) inutili, che può avere consegueze catastrofiche. Solitamente l'aggiunta di una libreria va documentata e motivata.
-
-Distributori di pacchetti come Debian devono il loro successo a una documentazione ricca delle dipendenze. Ogni pacchetto ha un control file che ne specifica le caratteristiche, le dipendenze vengono classificate come:
-- Depends: un pacchetto non viene configurato se la lista di questi pacchetti non è stata configurata.
-- Recommends: una dipendenza forte ma non obbligatoria, il pacchetto tecnicamente funziona lo stesso senza.
-- Suggests: un pacchetto è più utile se utilizzato con questa lista di pacchetti, ma è ragionevole usarlo anche senza.
-- Enhances: il contrario di Suggests, si dichiara qui che un pacchetto può migliorare l'utilizzo di un altro.
-- Pre-Depends: come Depends ma viene forzata l'installazione dei pacchetti necessari prima di installare questo pacchetto.
-
-Un pacchetto Debian può avere degli script che vengono eseguiti prima o dopo che un pacchetto viene installato o rimosso.
-Ogni pacchetto Debian ha una priorità:
-- Required: necessari al funzionamento del sistema, permettono il boot e l'installazione di altro software.
-- Important: pacchetti che si dovrebbero trovare un sistema tipo Unix.
-- Standard: pacchetti che si trovano su un sistema Linux, permettono limitate operazioni come scaricare file.
-- Optional: pacchetti che nel dubbio si vorrebbero installare e che non hanno requisiti particolari, tipo TeX.
-- Extra: pacchetti da installare solo se servono e che possono generare conflitti.
-- Essential: pacchetti che il package manager si riufuta di rimuovere.
-Un'installazione Debian di default si ferma a Standard.
-
-Il dependency hell sorge quando diversi pacchetti hanno dipendenze dagli stessi pacchetti o librerie condivise, ma dipendono da versioni diverse e incompatibili dei pacchetti condivisi. 
-Se il pacchetto o la libreria condivisi possono essere installati solo in una singola versione, l'utente potrebbe dover risolvere il problema ottenendo versioni più recenti o precedenti dei pacchetti dipendenti. Questo, a sua volta, potrebbe interrompere altre dipendenze e spingere il problema a un altro set di pacchetti.
-Una forma di dependency hell molto nota è il "DLL hell" di Microsoft Windows. Le DLL sono l'implementazione di Microsoft di librerie condivise. Le librerie condivise consentono di raggruppare codice comune in un wrapper, la DLL, che viene utilizzata da qualsiasi software applicativo sul sistema senza caricare più copie in memoria.
-
-Il problema è dato dall'installazione system-wide delle librerie, per questo spesso vogliamo installazioni specifiche per utente o applicazione.
-In Python è possibile creare un 'virtualenv' dove installare librerie specifiche per applicazione, senza installare sul sistema. Tuttavia questo può portare a molti duplicati e altri problemi.
-
-\chapter{Versionamento Semantico}
-Dato un numero di versione MAJOR.MINOR.PATCH, si incrementa:
-- Versione MAJOR quando apporti modifiche con API incompatibili
-- Versione MINOR quando si aggiungono funzionalità compatibili con versioni precedenti delle API
-- Versione PATCH quando si apportano correzioni di bug compatibili con le versioni precedenti
-
-Il versionamento semantico aiuta a capire la compatibilità di certe dipendenze in modo da uscire facilmente dal dependency hell.
-
-\chapter{Build Automation}
-Costruire (assemblare) un prodotto software fatto di molti componenti è tutt'altro che banale:
-- Dipendenze da componenti che non controlliamo (dependency hell)
-- Dipendenze fra componenti che stiamo sviluppando
-
-\section{Make}
-Uno strumento che aiuta nella build di un software è Make. Make è uno strumento di automazione della compilazione che crea automaticamente programmi eseguibili e librerie dal codice sorgente leggendo file chiamati Makefile che specificano come derivare il programma di destinazione.
-
-Come funziona Make:
-- Le dipendenze definiscono un grafo aciclico che ammette un unico ordinamento topologico (in quanto si passa una sola volta da ogni target)
-- I processi di generazione (recipes) sono eseguiti seguendo l’ordinamento topologico
-- Nei make moderni è possibile eseguire processi di generazione indipendenti in parallelo
-
-Il modello di make assume un ambiente di build fisso. L’ipotesi è irrealistica perfino nel mondo dello sviluppo anni ’70 (C/UNIX). Compilatori, librerie cambiano molto anche nell’ambito degli standard.
-
-\section{Autotools}
-GNU Autotools è una suite di strumenti di programmazione progettati per aiutare a rendere i pacchetti di codice sorgente portabili su molti sistemi Unix-like.
-Può essere difficile rendere portabile un programma software: il compilatore C differisce da sistema a sistema; alcune funzioni di libreria mancano su alcuni sistemi; i file di intestazione possono avere nomi diversi. 
-Un modo per gestirlo è scrivere codice condizionale, con blocchi di codice selezionati per mezzo di direttive del preprocessore (#ifdef); ma a causa dell'ampia varietà di ambienti di costruzione questo approccio diventa rapidamente ingestibile. 
-Autotools è progettato per affrontare questo problema in modo più gestibile:
-- 'configure' verifica le caratteristiche dell’ambiente di costruzione
-- genera un config.h con le #define giuste
-- genera un Makefile
-
-\section{Apache Ant}
-Apache Ant è uno strumento software per l'automazione dei processi di compilazione del software in sostituzione dello strumento di compilazione Make di Unix. È simile a Make, ma è implementato utilizzando il linguaggio Java e richiede la piattaforma Java. A differenza di Make, che usa il formato Makefile, Ant usa XML per descrivere il processo di compilazione del codice e le sue dipendenze.
-
-\section{Gradle}
-Gradle è uno strumento di automazione delle build per lo sviluppo di software multilinguaggio. Controlla il processo di sviluppo nelle attività di compilazione e confezionamento fino a test, distribuzione e pubblicazione. I linguaggi supportati includono Java (oltre a Kotlin, Groovy, Scala), C/C++ e JavaScript.
-Gradle si basa sui concetti di Apache Ant e Apache Maven e introduce un linguaggio domain-specific basato su Groovy e Kotlin rispetto a XML utilizzato da Ant/Maven. Gradle utilizza un grafico aciclico diretto per determinare l'ordine in cui è possibile eseguire le attività, fornendo la gestione delle dipendenze. Funziona su Java Virtual Machine.
-Raccoglie anche dati statistici sull'utilizzo delle librerie software in tutto il mondo.
-
-\chapter{Continuos Integration e Delivery}
-La Continuous Integration è una pratica di sviluppo software in cui i membri di un team integrano il proprio lavoro frequentemente, di solito ogni persona integra almeno quotidianamente, portando a più integrazioni al giorno. Ogni integrazione viene verificata da una build automatizzata (compreso il test) per rilevare gli errori di integrazione il più rapidamente possibile. Molti team ritengono che questo approccio porti a problemi di integrazione significativamente ridotti e consenta a un team di sviluppare software coeso più rapidamente.
-
-Operazioni della Continuos Integration:
-- Configuration Management
-- Esplicitazione delle dipendenze
-- Test d'unità, d'integrazione, d'accettazione
-- Build automatizzate
-- Deployment simulato o automatizzato
-
-Tradizionalmente, l’integrazione è una delle parti più lunghe e rischiose dei progetti software. L'integrazione continua (incrementale) minimizza il rischio di fallimento.
-
-Processo di Continuous Integration (almeno una volta al giorno):
-1. Lavoro su una copia locale sulla macchina di sviluppo
-2. Build vs. Compile: oltre alla costruzione esecuzione di test
-3. Build funzionante sulla macchina di sviluppo
-4. Caricamento sulla macchina d’integrazione
-5. Build funzionante sulla macchina d’integrazione
-
-Il Continuous Integration è cambiato nel tempo, ad oggi è molto facile creare branch.
-Si può creare un CI Server che monitora, ad esempio, GitHub, effettua l'integrazione, esegue i test e fornisce i feedback.
-
-Il build non dovrebbe impiegare più di 10 minuti, altrimenti si perde il feedback immediato. Che fare se è necessario più tempo?
-- Deployment pipeline: il build è spezzato in più fasi: commit build, slower tests build, ecc.
-- Il commit build impiega meno di 10 min, il resto parte poi
-
-Il sistema dove avviene l’integrazione dovrebbe essere il più possibile "simile" a quello di produzione.
-Il deployment verso l’ambiente di produzione può essere automatizzato (garantendo così un maggior controllo sulla effettiva configurazione in uso!).
-
-\section{Sottomoduli Git}
-Succede spesso che mentre si lavora su un progetto, è necessario utilizzare un altro progetto al suo interno. Forse è una libreria sviluppata da una terza parte o che stai sviluppando separatamente e utilizzando in più progetti. In questi scenari si pone un problema comune: si desidera essere in grado di trattare i due progetti come separati ma allo stesso tempo essere in grado di utilizzarne uno dall'interno dell'altro.
-
-Il problema con l'inclusione della libreria è che è difficile personalizzare la libreria in qualsiasi modo e spesso è più difficile distribuirla, perché è necessario assicurarsi che ogni client disponga di quella libreria. Il problema con la copia del codice nel tuo progetto è che tutte le modifiche personalizzate apportate sono difficili da unire quando nuove modifiche a monte diventano disponibili.
-
-Git risolve questo problema usando i sottomoduli. I sottomoduli ti consentono di mantenere un repository Git come sottodirectory di un altro repository Git. Ciò ti consente di clonare un altro repository nel tuo progetto e mantenere separati i tuoi commit.
+Git risolve questo problema usando i sottomoduli. I sottomoduli ti consentono di mantenere un repository Git come sottodirectory di un altro repository Git. Ciò ti consente di clonare un altro repository nel tuo progetto e 
+mantenere separati i tuoi commit.
 
 Le dipendenze sono necessarie quanto un pericolo. C'è il rischio della sindrome NIH ed è opportuno evidenziare quelle utilizzate e chiarirle.
 
 A volte le dipendenze sono richieste dal cliente o sono necessarie per integrarsi a sistemi esistenti.
 Le dipendenze si trovano anche nella progettazione (UML), nel codice e nel testing (junit) e durante il deploy (pacchettizzazioni, build automation, docker).
 
+
+\subsection{Limiti di git e la pull request}
+Git da se offre solo un livello di autorizzazione e nessun livello di tipo review. La pull request permette a un collaboratore di aggiungere delle modifiche a una repo di un altro sviluppatore.
+I progetti open source soffrono di questi limiti e certi ambienti di hosting hanno provato a risolversi, ad esempio con nuovi meccanismi o workflow come GitHub Flow.
+
+Il meccanismo di fork permette di mantenere legami tra repo su un sito di hosting ma con owner e autorizzazioni diverse.
+
+Viene prevista una fase di review tra la pull request e il merge della pull request.
+
+\subsection{Gerrit}
+Gerrit è un server git che fornisce:
+\begin{itemize}
+    \item Revisioni del codice: revisionare un commit prima di effettuare un merge
+    \item Controllo degli accessi: permessi di lettura e scrittura specifici per branch
+\end{itemize}
+Gerrit mappa i suoi concetti su git, serve solo un client git standard per usarlo. Per mandare un commit in review si utilizza il prefisso 'refs/for/'.
+
+La webapp di Gerrit permette di vedere i commit in review con i relativi diff. Si possono aggiungere commenti e voti. I voti sono divisi per labels (categorie) e alcuni sono bloccanti (veto) mentre 
+altri possono essere assegnati automaticamente, i voti determinano l'approvazione del commit.
+
+Si introducono i ruoli di Approver e Verifier.
+
+L'Approver deve determinare:
+\begin{itemize}
+    \item I cambiamenti sono adatti allo scopo del progetto?
+    \item I cambiamenti si adattano all'architettura del progetto?
+    \item I cambiamenti introducono falle che potrebbero causare problemi in futuro?
+    \item Le best practice del progetto sono state rispettare?
+    \item I cambiamenti sono un buon modo per eseguire la funzione descritta?
+    \item Vengono introdotti rischi per la sicurezza o per la stabilità?
+\end{itemize}
+Può rispondere con LGTM (Looks Good To Me).
+
+Il Verifier deve:
+\begin{itemize}
+    \item Applicare il cambiamento in locale
+    \item Fare una build e testarla
+\end{itemize}
+Può rispondere con Verified o Fails.
+
+\chapter{Dependency Hell}
+Finora abbiamo visto la tar-pit e come sviluppare in gruppo può creare difficoltà nella comunicazione e nella divisione del lavoro. È necessario coordinarsi e uno strumento disponibile sono i software 
+di configuration management, attraverso questi si controlla l'evoluzione e la revisione dei manufatti.
+Collaborare in modo ordinato richiede uno sforzo che eccede scrivere soltanto del codice. Per inserire il proprio lavoro in uno sforzo collettivo ci vogliono parecchie energie e bisogna rispettare 
+policy del gruppo (azienda o kibbutz).
+
+Le applicazioni dipendono da:
+\begin{itemize}
+    \item Kernel
+    \item Device drivers
+    \item Librerie di sistema
+    \item Librerie di supporto
+\end{itemize}
+
+Se il linguaggio è interpretato, le librerie di sistema non sono solitamente una cosa a cui pensare, rimane il problema delle librerie di supporto.
+Utilizzare una libreria è utile perché non è necessario reinventare ciò che esiste già, molti cadono nel tranello della sindrome Not Invented Here (rifare qualcosa che esiste già solo per farlo in casa).
+Esiste il rischio di aggiungere troppe librerie (e quindi dipendenze) inutili, che può avere consegueze catastrofiche. Solitamente l'aggiunta di una libreria va documentata e motivata.
+
+Distributori di pacchetti come Debian devono il loro successo a una documentazione ricca delle dipendenze. Ogni pacchetto ha un control file che ne specifica le caratteristiche, le dipendenze vengono 
+classificate come:
+\begin{itemize}
+    \item \textbf{Depends}: un pacchetto non viene configurato se la lista di questi pacchetti non è stata configurata.
+    \item \textbf{Recommends}: una dipendenza forte ma non obbligatoria, il pacchetto tecnicamente funziona lo stesso senza.
+    \item \textbf{Suggests}: un pacchetto è più utile se utilizzato con questa lista di pacchetti, ma è ragionevole usarlo anche senza.
+    \item \textbf{Enhances}: il contrario di Suggests, si dichiara qui che un pacchetto può migliorare l'utilizzo di un altro.
+    \item \textbf{Pre-Depends}: come Depends ma viene forzata l'installazione dei pacchetti necessari prima di installare questo pacchetto.
+\end{itemize}
+Un pacchetto Debian può avere degli script che vengono eseguiti prima o dopo che un pacchetto viene installato o rimosso.
+Ogni pacchetto Debian ha una priorità:
+\begin{itemize}
+    \item \textbf{Required}: necessari al funzionamento del sistema, permettono il boot e l'installazione di altro software.
+    \item \textbf{Important}: pacchetti che si dovrebbero trovare un sistema tipo Unix.
+    \item \textbf{Standard}: pacchetti che si trovano su un sistema Linux, permettono limitate operazioni come scaricare file.
+    \item \textbf{Optional}: pacchetti che nel dubbio si vorrebbero installare e che non hanno requisiti particolari, tipo TeX.
+    \item \textbf{Extra}: pacchetti da installare solo se servono e che possono generare conflitti.
+    \item \textbf{Essential}: pacchetti che il package manager si riufuta di rimuovere.
+\end{itemize}
+Un'installazione Debian di default si ferma a Standard.
+
+Il \textbf{dependency hell} sorge quando diversi pacchetti hanno dipendenze dagli stessi pacchetti o librerie condivise, ma dipendono da versioni diverse e incompatibili dei pacchetti condivisi. 
+Se il pacchetto o la libreria condivisi possono essere installati solo in una singola versione, l'utente potrebbe dover risolvere il problema ottenendo versioni più recenti o precedenti dei pacchetti dipendenti. 
+Questo, a sua volta, potrebbe interrompere altre dipendenze e spingere il problema a un altro set di pacchetti.
+Una forma di dependency hell molto nota è il "DLL hell" di Microsoft Windows. Le DLL sono l'implementazione di Microsoft di librerie condivise. Le librerie condivise consentono di raggruppare codice comune in un wrapper, 
+la DLL, che viene utilizzata da qualsiasi software applicativo sul sistema senza caricare più copie in memoria.
+
+Il problema è dato dall'installazione system-wide delle librerie, per questo spesso vogliamo installazioni specifiche per utente o applicazione.
+In Python è possibile creare un 'virtualenv' dove installare librerie specifiche per applicazione, senza installare sul sistema. Tuttavia questo può portare a molti duplicati e altri problemi.
+
+\chapter{Versionamento Semantico}
+Dato un numero di versione MAJOR.MINOR.PATCH, si incrementa:
+\begin{itemize}
+    \item Versione MAJOR quando apporti modifiche con API incompatibili.
+    \item Versione MINOR quando si aggiungono funzionalità compatibili con versioni precedenti delle API.
+    \item Versione PATCH quando si apportano correzioni di bug compatibili con le versioni precedenti.
+\end{itemize}
+Il versionamento semantico aiuta a capire la compatibilità di certe dipendenze in modo da uscire facilmente dal dependency hell.
+
+\chapter{Build Automation}
+Costruire (assemblare) un prodotto software fatto di molti componenti è tutt'altro che banale:
+\begin{itemize}
+    \item Dipendenze da componenti che non controlliamo (dependency hell)
+    \item Dipendenze fra componenti che stiamo sviluppando
+\end{itemize}
+
+\section{Make}
+Uno strumento che aiuta nella build di un software è Make. Make è uno strumento di automazione della compilazione che crea automaticamente programmi eseguibili e librerie dal codice sorgente leggendo file chiamati 
+Makefile che specificano come derivare il programma di destinazione.
+
+Come funziona Make:
+\begin{itemize}
+    \item Le dipendenze definiscono un grafo aciclico che ammette un unico ordinamento topologico (in quanto si passa una sola volta da ogni target)
+    \item I processi di generazione (recipes) sono eseguiti seguendo l’ordinamento topologico
+    \item Nei make moderni è possibile eseguire processi di generazione indipendenti in parallelo
+\end{itemize}
+Il modello di make assume un ambiente di build fisso. L’ipotesi è irrealistica perfino nel mondo dello sviluppo anni ’70 (C/UNIX). Compilatori, librerie cambiano molto anche nell’ambito degli standard.
+
+\section{Autotools}
+GNU Autotools è una suite di strumenti di programmazione progettati per aiutare a rendere i pacchetti di codice sorgente portabili su molti sistemi Unix-like.
+Può essere difficile rendere portabile un programma software: il compilatore C differisce da sistema a sistema; alcune funzioni di libreria mancano su alcuni sistemi; i file di intestazione possono avere nomi diversi. 
+Un modo per gestirlo è scrivere codice condizionale, con blocchi di codice selezionati per mezzo di direttive del preprocessore (\#ifdef); ma a causa dell'ampia varietà di ambienti di costruzione questo approccio diventa rapidamente ingestibile. 
+Autotools è progettato per affrontare questo problema in modo più gestibile:
+\begin{itemize}
+    \item 'configure' verifica le caratteristiche dell’ambiente di costruzione
+    \item genera un config.h con le \#define giuste
+    \item genera un Makefile
+\end{itemize}
+
+\section{Apache Ant}
+Apache Ant è uno strumento software per l'automazione dei processi di compilazione del software in sostituzione dello strumento di compilazione Make di Unix. È simile a Make, ma è implementato utilizzando il linguaggio 
+Java e richiede la piattaforma Java. A differenza di Make, che usa il formato Makefile, Ant usa XML per descrivere il processo di compilazione del codice e le sue dipendenze.
+
+\section{Gradle}
+Gradle è uno strumento di automazione delle build per lo sviluppo di software multilinguaggio. Controlla il processo di sviluppo nelle attività di compilazione e confezionamento fino a test, distribuzione e pubblicazione. 
+I linguaggi supportati includono Java (oltre a Kotlin, Groovy, Scala), C/C++ e JavaScript.
+Gradle si basa sui concetti di Apache Ant e Apache Maven e introduce un linguaggio domain-specific basato su Groovy e Kotlin rispetto a XML utilizzato da Ant/Maven. Gradle utilizza un grafico aciclico diretto per determinare 
+l'ordine in cui è possibile eseguire le attività, fornendo la gestione delle dipendenze. Funziona su Java Virtual Machine.
+Raccoglie anche dati statistici sull'utilizzo delle librerie software in tutto il mondo.
+
+\chapter{Continuos Integration e Delivery}
+La Continuous Integration è una pratica di sviluppo software in cui i membri di un team integrano il proprio lavoro frequentemente, di solito ogni persona integra almeno quotidianamente, 
+portando a più integrazioni al giorno. Ogni integrazione viene verificata da una build automatizzata (compreso il test) per rilevare gli errori di integrazione il più rapidamente possibile. 
+Molti team ritengono che questo approccio porti a problemi di integrazione significativamente ridotti e consenta a un team di sviluppare software coeso più rapidamente.
+
+Operazioni della Continuos Integration:
+\begin{itemize}
+    \item Configuration Management
+    \item Esplicitazione delle dipendenze
+    \item Test d'unità, d'integrazione, d'accettazione
+    \item Build automatizzate
+    \item Deployment simulato o automatizzato
+\end{itemize}
+Tradizionalmente, l’integrazione è una delle parti più lunghe e rischiose dei progetti software. L'integrazione continua (incrementale) minimizza il rischio di fallimento.
+
+Processo di Continuous Integration (almeno una volta al giorno):
+\begin{itemize}
+    \item[1.] Lavoro su una copia locale sulla macchina di sviluppo.
+    \item[2.] Build vs. Compile: oltre alla costruzione esecuzione di test.
+    \item[3.] Build funzionante sulla macchina di sviluppo.
+    \item[4.] Caricamento sulla macchina d’integrazione.
+    \item[5.] Build funzionante sulla macchina d’integrazione. 
+\end{itemize}
+Il Continuous Integration è cambiato nel tempo, ad oggi è molto facile creare branch.
+Si può creare un CI Server che monitora, ad esempio, GitHub, effettua l'integrazione, esegue i test e fornisce i feedback.
+
+Il build non dovrebbe impiegare più di 10 minuti, altrimenti si perde il feedback immediato. Che fare se è necessario più tempo?
+\begin{itemize}
+    \item Deployment pipeline: il build è spezzato in più fasi: commit build, slower tests build, ecc.
+    \item Il commit build impiega meno di 10 min, il resto parte poi.
+\end{itemize}
+Il sistema dove avviene l’integrazione dovrebbe essere il più possibile "simile" a quello di produzione.
+Il deployment verso l’ambiente di produzione può essere automatizzato (garantendo così un maggior controllo sulla effettiva configurazione in uso!).
+
+\section{Principi di Continuos Integration}
+\begin{itemize}
+    \item \textbf{Mantieni un repository del codice sorgente} - questo elemento è propedeutico a tutti gli altri principi, perché senza avere un repository del codice è impossibile automatizzare il build ed i test.
+    \item \textbf{Automatizza il processo di build} - per build si intende il processo che trasforma il codice sorgente in un artefatto eseguibile. Deve essere possibile eseguire la compilazione e la creazione dei pacchetti 
+        da mettere sui server in modo completamente automatizzato, senza alcun intervento umano.
+    \item \textbf{Rendi il build auto-testante} - ogni volta che il codice sorgente viene compilato ed impacchettato, è importante che vengano eseguiti dei test sul sorgente affinché la qualità del codice venga 
+        tenuta sotto controllo ed eventuali bug vengano scoperti il prima possibile.
+    \item \textbf{Tutti eseguono commit alla baseline tutti i giorni} - è inutile compilare e testare il sorgente se gli sviluppatori sviluppano codice sui propri computer senza sincronizzarsi spesso col codice scritto 
+        da altri. È importante però che il codice sia compilabile ed abbia superato tutti i test.
+    \item \textbf{Ogni commit fa partire una build} - ogni modifica al codice sorgente condiviso potrebbe generare dei bug e quindi compilare e testare subito dà la possibilità di intervenire immediatamente su eventuali bug.
+    \item \textbf{Fai in modo che il build sia veloce} - una build troppo lenta può rendere poco agevole il far partire le build automatici dopo i commit, e potrebbe costringere gli sviluppatori ad aspettare la fine della build 
+        prima di effettuare un commit o di verificarne l'esito.
+    \item \textbf{Eseguire i test in un clone dell'ambiente di produzione} - se l'ambiente su cui vengono eseguiti i test non è assolutamente identico all'ambiente di produzione, c'è il rischio che qualcosa che è stato testato 
+        generi dei bug inspiegabili una volta rilasciato in produzione, con conseguenti danni economici.
+    \item \textbf{Fai in modo che sia facile prendere le ultime versioni dei pacchetti} - questo principio serve quando si hanno tanti ambienti che devono essere tenuti allineati.
+    \item \textbf{Ognuno può vedere i risultati dell'ultimo build} - la trasparenza permette di stabilire il livello di qualità raggiunto da ogni modulo e capire quali sono i moduli che hanno bisogno di maggiore attenzione.
+    \item \textbf{Automatizza i rilasci} - anche il rilascio del software sugli ambienti di test o sull'ambiente di produzione deve essere automatizzato.
+\end{itemize}
+
 \chapter{Divisione del lavoro}
-Vogliamo suddividire il lavoro senza la continua necessità di coordinazione. Perché un sottogruppo di lavoro possa procedere in "isolamento" dovrebbe conoscere i componenti sviluppati da altri (o che altri svilupperanno). Cioè il loro comportamento:
-- In situazioni fisiologiche (correttezza): il grado in cui un sistema o un componente è esente da difetti nella sua specifica, progettazione e implementazione.
-- In situazioni patologiche (robustezza): il grado in cui un sistema o un componente può funzionare correttamente in presenza di input non validi o condizioni ambientali stressanti.
+Vogliamo suddividire il lavoro senza la continua necessità di coordinazione. Perché un sottogruppo di lavoro possa procedere in "isolamento" dovrebbe conoscere i componenti 
+sviluppati da altri (o che altri svilupperanno). Cioè il loro comportamento:
+\begin{itemize}
+    \item In situazioni fisiologiche (correttezza): il grado in cui un sistema o un componente è esente da difetti nella sua specifica, progettazione e implementazione.
+    \item In situazioni patologiche (robustezza): il grado in cui un sistema o un componente può funzionare correttamente in presenza di input non validi o condizioni ambientali stressanti.
+\end{itemize}
+    A questo scopo è quindi necessario specificare il funzionamento del sistema.
+    Una specifica è una descrizione delle proprietà del marchingegno/componente utilizzato per risolvere un problema (a sua volta definito dai requisiti di progetto). Le specifiche, perciò, sono una descrizione delle parti 
+    che compongono la soluzione: le modalità computazionali però sono lasciate impredicate. (What vs. How)
 
-A questo scopo è quindi necessario specificare il funzionamento del sistema.
-Una specifica è una descrizione delle proprietà del marchingegno/componente utilizzato per risolvere un problema (a sua volta definito dai requisiti di progetto). Le specifiche, perciò, sono una descrizione delle parti che compongono la soluzione: le modalità computazionali però sono lasciate impredicate. (What vs. How)
+    Le specifiche costituiscono naturalmente l'interfaccia fra gruppi che si suddividono l'implementazione di un sistema complesso.
+    Il coordinamento rimane necessario a livello di specifica: ma accordarsi su "cosa" sembra più facile che sul "come".
+    I sottogruppi avranno la responsabilità di aderire alle specifiche nelle loro implementazioni.
 
-Le specifiche costituiscono naturalmente l'interfaccia fra gruppi che si suddividono l'implementazione di un sistema complesso.
-Il coordinamento rimane necessario a livello di specifica: ma accordarsi su "cosa" sembra più facile che sul "come".
-I sottogruppi avranno la responsabilità di aderire alle specifiche nelle loro implementazioni.
-
-Ci sono una serie di "interface faults" (Perry & Evangelist) che emergono nei sistemi complessi, ad esempio aggiungere funzionalità o problemi di performance.
+    Ci sono una serie di "interface faults" (Perry \& Evangelist) che emergono nei sistemi complessi, ad esempio aggiungere funzionalità o problemi di performance.
 
 \section{Asserzioni}
-Il meccanismo base per monitorare/verificare l'aderenza di una implementazione alle specifiche (e ridurre gli interface fault): le asserzioni.
-L'asserzione è un'espressione logica che specifica uno stato del programma che deve esistere o un insieme di condizioni che le variabili del programma devono soddisfare in un punto particolare durante l'esecuzione del programma. Una funzione o una macro che si lamenta a gran voce se un presupposto di progettazione su cui si basa il codice non è vero.
+    Il meccanismo base per monitorare/verificare l'aderenza di una implementazione alle specifiche (e ridurre gli interface fault): le asserzioni.
+    L'asserzione è un'espressione logica che specifica uno stato del programma che deve esistere o un insieme di condizioni che le variabili del programma devono soddisfare in un punto particolare durante l'esecuzione del 
+    programma. Una funzione o una macro che si lamenta a gran voce se un presupposto di progettazione su cui si basa il codice non è vero.
 
-Le asserzioni sono presenti in ogni maggiore linguaggio di programmazione, ci sono dei patter per utilizzare le asserzioni.
+    Le asserzioni sono presenti in ogni maggiore linguaggio di programmazione, ci sono dei patter per utilizzare le asserzioni.
 
 \chapter{Design by Contract}
-Se usate estensivamente, le asserzioni possono costituire una vera e propria specifica delle componenti del sistema.
-L'idea della progettazione per contratto (B. Meyer, 1986) è che il linguaggio per descrivere specifiche e implementazioni è lo stesso: la specifica è parte integrante del codice del sistema.
-La specifica è parte del "contratto" secondo cui ciascun componente fornisce i propri servizi al resto del sistema.
+    Se usate estensivamente, le asserzioni possono costituire una vera e propria specifica delle componenti del sistema.
+    L'idea della progettazione per contratto (B. Meyer, 1986) è che il linguaggio per descrivere specifiche e implementazioni è lo stesso: la specifica è parte integrante del codice del sistema.
+    La specifica è parte del "contratto" secondo cui ciascun componente fornisce i propri servizi al resto del sistema.
 
 \section{Tripla di Hoare}
-{P}S{Q}
+$\{P\}S\{Q\}$
 
-Ogni esecuzione di S che parta da uno stato che soddisfa la condizione P (pre-condizione) termina in uno stato che soddisfa la condizione Q (post-condizione).
-Ogni programma che termina è corretto se e solo se vale la proprietà precedente.
+    Ogni esecuzione di S che parta da uno stato che soddisfa la condizione P (pre-condizione) termina in uno stato che soddisfa la condizione Q (post-condizione).
+    Ogni programma che termina è corretto se e solo se vale la proprietà precedente.
 
-La tripla di Hoare {P}S{Q} può diventare un contratto fra chi implementa (fornitore) S e chi usa (cliente) S.
-L'implementatore di S si impegna a garantire Q in tutti gli stati che soddisfano P.
-L'utilizzatore di S si impegna a chiedere il servizio in un stato che soddisfa P ed è certo che se S termina, si giungerà in uno stato in Q vale.
-Il lavoro dell'implementatore è particolarmente facile quando: Q è True (vera per ogni risultato!) o quando P è False (l’utilizzatore non riuscirà mai a portare il sistema in uno stato in cui tocchi fare qualcosa!). Weakest precondition (data Q) o strongest postcondition (data P) determinano il ruolo di una feature.
+    La tripla di Hoare $\{P\}S\{Q\}$ può diventare un contratto fra chi implementa (fornitore) S e chi usa (cliente) S.
+    L'implementatore di S si impegna a garantire Q in tutti gli stati che soddisfano P.
+    L'utilizzatore di S si impegna a chiedere il servizio in un stato che soddisfa P ed è certo che se S termina, si giungerà in uno stato in Q vale.
+    Il lavoro dell'implementatore è particolarmente facile quando: Q è True (vera per ogni risultato!) o quando P è False (l’utilizzatore non riuscirà mai a portare il sistema in uno stato in cui tocchi fare qualcosa!). 
+    Weakest precondition (data Q) o strongest postcondition (data P) determinano il ruolo di una feature.
 
-Eiffel è linguaggio object-oriented che introduce i contratti nell'interfaccia delle classi. Il contratto di default per un metodo ("feature") F è {True}F{True}.
+    Eiffel è linguaggio object-oriented che introduce i contratti nell'interfaccia delle classi. Il contratto di default per un metodo ("feature") F è {True}F{True}.
 
-\chapter{Eiffel}
-Eiffel è esplicitamente progettato come linguaggio "di progetto", non solo “di programmazione”.
-Ecma standard 367: specify, design, implement and modify quality software.
-"Programmazione in grande" con oggetti, derivati da classi organizzate in gerarchie di ereditarietà e raggruppate in cluster, che forniscono feature (command o query) ai loro client.
+\section{Eiffel}
+    Eiffel è esplicitamente progettato come linguaggio "di progetto", non solo “di programmazione”.
+    Ecma standard 367: specify, design, implement and modify quality software.
+    "Programmazione in grande" con oggetti, derivati da classi organizzate in gerarchie di ereditarietà e raggruppate in cluster, che forniscono feature (command o query) ai loro client.
 
-Asserzioni in Eiffel:
-- Pre/Post condizioni
-- Invarianti di classe
-- Asserzioni
-- Loop invariant
-
-Le invarianti di classe sono condizioni che devono essere vere in ogni momento "critico", ossia osservabile dall’esterno. In pratica è come se facessero parte di ogni pre- e post-condizione.
-È possibile avere un supporto run-time alle violazioni: se una condizione non vale viene sollevata un'eccezione. L'eccezione porta il sistema nel precedente stato stabile ed è possibile:
-- Terminare con un fallimento
-- Riprovare
-
-Spesso si scrivono le "stesse" cose due volte: implementazione e specifica.
-Il client è responsabile delle precondizioni, il fornitore di postcondizioni e invarianti.
+    Asserzioni in Eiffel:
+\begin{itemize}
+    \item Pre/Post condizioni
+    \item Invarianti di classe
+    \item Asserzioni
+    \item Loop invariant
+\end{itemize}
+    Le invarianti di classe sono condizioni che devono essere vere in ogni momento "critico", ossia osservabile dall’esterno. In pratica è come se facessero parte di ogni pre- e post-condizione.
+    È possibile avere un supporto run-time alle violazioni: se una condizione non vale viene sollevata un'eccezione. L'eccezione porta il sistema nel precedente stato stabile ed è possibile:
+\begin{itemize}
+    \item Terminare con un fallimento
+    \item Riprovare
+\end{itemize}
+    Spesso si scrivono le "stesse" cose due volte: implementazione e specifica.
+    Il client è responsabile delle precondizioni, il fornitore di postcondizioni e invarianti.
 
 \section{Design by Contract in Eiffel}
-Il principio di sostituzione di Liskov stabilisce che, perché un oggetto di una classe derivata soddisfi la relazione 'is-a', ogni suo metodo:
-- Deve essere accessibile a pre-condizioni uguali o più deboli del metodo della superclasse
-- Deve garantire post-condizioni uguali o più forti del metodo della superclasse 
-Altrimenti il "figlio" non può essere sostituito al "padre" senza alterare il sistema.
+    Il principio di sostituzione di Liskov stabilisce che, perché un oggetto di una classe derivata soddisfi la relazione 'is-a', ogni suo metodo:
+\begin{itemize}
+    \item Deve essere accessibile a pre-condizioni uguali o più deboli del metodo della superclasse
+    \item Deve garantire post-condizioni uguali o più forti del metodo della superclasse 
+    \item 
+\end{itemize}
+    Altrimenti il "figlio" non può essere sostituito al "padre" senza alterare il sistema.
 
-Un modo per garantire che le condizioni siano automaticamente vere consiste nell'assumere implicitamente che, se la classe evoluta specifica esplicitamente una precondizione P e una postcondizione Q, le reali pre- e post-condizioni siano:
-- PREderived = PREparent ∨ P
-- POSTderived = POSTparent ∧ Q
+    Un modo per garantire che le condizioni siano automaticamente vere consiste nell'assumere implicitamente che, se la classe evoluta specifica esplicitamente una precondizione P e una postcondizione Q, 
+    le reali pre- e post-condizioni siano:
+\begin{itemize}
+    \item PREderived = PREparent ∨ P
+    \item POSTderived = POSTparent ∧ Q
+\end{itemize}
+    In Eiffel: 'require else' e 'ensure then'.
 
-In Eiffel: 'require else' e 'ensure then'.
+    Quando una feature accetta dei parametri il tipo del parametro formale è chiaramente una implicita precondizione: infatti limita il dominio di ciò che l’implementatore deve trattare. Il tipo del valore di ritorno costituisce 
+    invece una promessa, esattamente come le postcondizioni. Inevitabilmente, quindi, per evitare errori di tipo occorre aderire al principio di Liskov anche nel trattamento dei parametri. C’è un modo facile di ottenerlo, 
+    adottato dalla maggior parte dei linguaggi orientati agli oggetto e staticamente tipizzati (come Java e C++): le ridefinizioni (i metodi ereditati) non possono cambiare il tipo dei parametri, sia di quelli in "ingresso", 
+    che di quelli in "uscita" come il valore di ritorno: nel gergo dei linguaggi di programmazione questa scelta è detta "novarianza". La novarianza a volte può però essere troppo vincolante per progettisti che troverebbero in 
+    qualche caso più "naturale" restringere il dominio dei parametri di ingresso. Per questo motivo Eiffel fa una scelta piuttosto controcorrente: la ridefinizione può essere covariante cioè ammettere parametri (in ingresso) di 
+    sottotipi, infrangendo così il principio di Liskov. Si noti che una varianza in senso opposto (controvarianza) in cui i parametri posso essere sopra-tipi sarebbe invece del tutto accettabile dal punto di vista del principio 
+    di Liskov: si tratta in effetti di una possibilità esplorata in alcuni linguaggi (e.g. Sather) ma risultata poco utile e tutto sommato meno naturale anche della novarianza.
 
-Quando una feature accetta dei parametri il tipo del parametro formale è chiaramente una implicita precondizione: infatti limita il dominio di ciò che l’implementatore deve trattare. Il tipo del valore di ritorno costituisce invece una promessa, esattamente come le postcondizioni. 
-Inevitabilmente, quindi, per evitare errori di tipo occorre aderire al principio di Liskov anche nel trattamento dei parametri. C’è un modo facile di ottenerlo, adottato dalla maggior parte dei linguaggi orientati agli oggetto e staticamente tipizzati (come Java e C++): le ridefinizioni (i metodi ereditati) non possono cambiare il tipo dei parametri, sia di quelli in "ingresso", che di quelli in "uscita" come il valore di ritorno: nel gergo dei linguaggi di programmazione questa scelta è detta "novarianza".
-La novarianza a volte può però essere troppo vincolante per progettisti che troverebbero in qualche caso più "naturale" restringere il dominio dei parametri di ingresso. Per questo motivo Eiffel fa una scelta piuttosto controcorrente: la ridefinizione può essere covariante cioè ammettere parametri (in ingresso) di sottotipi, infrangendo così il principio di Liskov. Si noti che una varianza in senso opposto (controvarianza) in cui i parametri posso essere sopra-tipi sarebbe invece del tutto accettabile dal punto di vista del principio di Liskov: si tratta in effetti di una possibilità esplorata in alcuni linguaggi (e.g. Sather) ma risultata poco utile e tutto sommato meno naturale anche della novarianza.
-
-Infrangere il principio di Liskov porta a possibili errori, per questo in Eiffel esiste la 'catcall', un'eccezione sollevata quando ci si aspettava un sotto-tipo e si riceve un tipo che ha tutti i medodi che servivano.
+    Infrangere il principio di Liskov porta a possibili errori, per questo in Eiffel esiste la 'catcall', un'eccezione sollevata quando ci si aspettava un sotto-tipo e si riceve un tipo che ha tutti i medodi che servivano.
 
 \section{Violazioni del contratto}
-Nel modello di Eiffel hanno un ruolo importante le eccezioni, che vengono trattate in un modo differente da quello dei più diffusi linguaggi di programmazione.
-Un'eccezione è un evento di runtime che può causare il fallimento di una chiamata di routine (violazione del contratto). Un errore di una routine provoca un'eccezione nel suo chiamante.
+    Nel modello di Eiffel hanno un ruolo importante le eccezioni, che vengono trattate in un modo differente da quello dei più diffusi linguaggi di programmazione.
+    Un'eccezione è un evento di runtime che può causare il fallimento di una chiamata di routine (violazione del contratto). Un errore di una routine provoca un'eccezione nel suo chiamante.
+    Sicuramente c'è un difetto.
+    Se il contratto è corretto:
+\begin{itemize}
+    \item Violazione delle precondizioni: responsabile è il client
+    \item Violazione delle postcondizioni o invarianti: responsabile è l'implementatore
+\end{itemize}
 
-Sicuramente c'è un difetto.
-Se il contratto è corretto:
-- Violazione delle precondizioni: responsabile è il client
-- Violazione delle postcondizioni o invarianti: responsabile è l'implementatore
+    Due modalità per trattare le eccezioni:
+\begin{itemize}
+    \item Fallimento (panico organizzato): ripulire l'ambiente, terminare la chiamata e segnalare il guasto al chiamante.
+    \item Retry: tenta di modificare le condizioni che hanno portato all'eccezione e di eseguire nuovamente la routine dall'inizio.
+\end{itemize}
+    Per trattare il secondo caso, Eiffel introduce il costrutto 'rescue/retry'. Se il corpo del 'rescue' non fa 'retry', si ha un failure.
 
-Due modalità per trattare le eccezioni:
-- Fallimento (panico organizzato): ripulire l'ambiente, terminare la chiamata e segnalare il guasto al chiamante.
-- Retry: tenta di modificare le condizioni che hanno portato all'eccezione e di eseguire nuovamente la routine dall'inizio.
-Per trattare il secondo caso, Eiffel introduce il costrutto 'rescue/retry'. Se il corpo del 'rescue' non fa 'retry', si ha un failure.
+\end{document}

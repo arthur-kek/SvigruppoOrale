@@ -612,7 +612,9 @@ INPUT main.out
 INPUT .\main.out
 INPUT .\main.out
 OUTPUT main.out
-OUTPUT main.xdv
+INPUT .\main.toc
+INPUT main.toc
+INPUT main.toc
 INPUT C:\Users\Arthur\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
 INPUT C:\Users\Arthur\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr8.tfm
 INPUT C:\Users\Arthur\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr6.tfm
@@ -622,6 +624,8 @@ INPUT C:\Users\Arthur\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi6.tf
 INPUT C:\Users\Arthur\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy10.tfm
 INPUT C:\Users\Arthur\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy8.tfm
 INPUT C:\Users\Arthur\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy6.tfm
+OUTPUT main.xdv
+OUTPUT main.toc
 INPUT main.aux
 INPUT .\main.out
 INPUT .\main.out
