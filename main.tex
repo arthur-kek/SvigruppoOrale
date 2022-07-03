@@ -21,7 +21,7 @@
 \begin{document}
 \tableofcontents
 \chapter{Introduzione}
-Mentre nei corsi di programmazione solitamente c'è 1 programmatore che scrive algoritmi per una sola macchina, in un contesto più grande ci sono molti programmatori, suddivisi in team, che rispondono a vari committenti e realizzano sistemi e componenti che devono essere anche mantenuti.
+Mentre nei corsi di programmazione solitamente c'è un programmatore che scrive algoritmi per una sola macchina, in un contesto più grande ci sono molti programmatori, suddivisi in team, che rispondono a vari committenti e realizzano sistemi e componenti che devono essere anche mantenuti.
 
 È necessario quindi organizzare lo sviluppo in un gruppo di lavoro complesso.
 
@@ -38,37 +38,38 @@ Perché un progetto non rispetta i tempi prestabiliti?
 \begin{itemize}
     \item Le tecniche di stima sono sempre ottimiste rispetto alla realtà.
         In un progetto ci sono molte attività, spesso collegate una all'altra, che possono andare nel modo sbagliato, aumentando di molto la probabilità di fallire.
-    \item Si confonde sforzo con progresso, personale e mesi non sono intercambiali (il mitico mese-uomo)
-    \item Le stime sono incerte
-    \item Il progresso è monitorato in modo superficiale
-    \item Si tende ad aggredire i ritardi aggiungendo personale, che causa ancora più ritardo
+    \item Si confonde sforzo con progresso, personale e mesi non sono intercambiali (il mitico mese-uomo).
+    \item Le stime sono incerte.
+    \item Il progresso è monitorato in modo superficiale.
+    \item Si tende ad aggredire i ritardi aggiungendo personale, che causa ancora più ritardo.
 \end{itemize}
 Il mese-uomo non può essere usato come unità di misura perche personale e mesi non sono intercambiali quando si parla di programazione. Il mese-uomo è valido solo per le attività che non necessitano di comunicazione tra il personale (e.g. raccogliere pomodori). È impossibile applicarlo ad attività che non possono essere partizionate su più persone e per attività che richiedono comunicazione complessa come lo sviluppo software può generare risultati anche peggiori.
 Ogni risorsa umana aggiunta deve essere formata e questa attività non può essere partizionata, lo sforzo di comunicazione cresce di n(n-1)/2 ogni volta che ne viene aggiunta una.
 Il risultato è che aggiungendo risorse si arriva a un punto dove il tempo totale viene allungato e non ridotto.
-Legge di Brooks: aggiungendo personale a un progetto di sviluppo software in ritardo, lo farà tardare ancora di più.
+
+\textbf{Legge di Brooks}: aggiungendo personale a un progetto di sviluppo software in ritardo, lo farà tardare ancora di più.
 
 \section{La sala operatoria}
 Tra i programmatori se ne trova sempre uno che è 10 volte più capace e performante degli altri. Si potrebbe pensare di prendere solo questi ultimi e metterli a lavorare in un team piccolo, tuttavia non sarebbe possibile per progetti più grandi.
 
 La sala operatoria di Mills:
 \begin{itemize}
-    \item Il chirurgo: molto esperto in più settori, definisce le specifiche, progetta il programma, lo scrive e lo documenta. Conduce i test e controlla le versioni del programma.
-    \item Il copilota: ha meno esperienza del chirurgo ma potrebbe sostituirlo, agisce come consigliere del chirugo. Non scrive il codice ma lo conosce molto bene e fa da intermediatore con il team.
-    \item L'amministratore: si occupa di personale, paga, spazi per conto del chirurgo.
-    \item L'editore: si occupa di revisionare la documentazione scritta dal chirurgo.
-    \item Due segretari: uno per l'amministratore e uno per l'editore, il primo si occupa anche della corrispondenza.
-    \item L'addetto al programmma: si occupa di mantenere i record del team, gestisce i file, mantiene gli input e gli output.
-    \item Il fabbro: si occupa di utities, librerie e degli strumenti che verranno usati per programmare, togliendo questo pensiero a chi programma.
-    \item Il tester: pianifica i test e mette alla prova i programmi.
-    \item L'avvocato del linguaggio: mentre il chirugo pensa alla rappresentazione del programma, ci sarà un altro che conosce ogni segreto e trucco del linguaggio di programmazione per risolvere al meglio un problema. Può essere condiviso da più team.
+    \item \textbf{Il chirurgo}: molto esperto in più settori, definisce le specifiche, progetta il programma, lo scrive e lo documenta. Conduce i test e controlla le versioni del programma.
+    \item \textbf{Il copilota}: ha meno esperienza del chirurgo ma potrebbe sostituirlo, agisce come consigliere del chirugo. Non scrive il codice ma lo conosce molto bene e fa da intermediatore con il team.
+    \item \textbf{L'amministratore}: si occupa di personale, paga, spazi per conto del chirurgo.
+    \item \textbf{L'editore}: si occupa di revisionare la documentazione scritta dal chirurgo.
+    \item \textbf{Due segretari}: uno per l'amministratore e uno per l'editore, il primo si occupa anche della corrispondenza.
+    \item \textbf{L'addetto al programmma}: si occupa di mantenere i record del team, gestisce i file, mantiene gli input e gli output.
+    \item \textbf{Il fabbro}: si occupa di utities, librerie e degli strumenti che verranno usati per programmare, togliendo questo pensiero a chi programma.
+    \item \textbf{Il tester}: pianifica i test e mette alla prova i programmi.
+    \item \textbf{L'avvocato del linguaggio}: mentre il chirugo pensa alla rappresentazione del programma, ci sarà un altro che conosce ogni segreto e trucco del linguaggio di programmazione per risolvere al meglio un problema. Può essere condiviso da più team.
 \end{itemize}
 L'intero team della sala operatoria agisce e pensa come una sola persona.
 
 \section{La cattedrale}
 Non è possibile scalare la sala operatoria e mantenere l'integrità del sistema. Perché ciò accada, bisogna separare l'architettura dall'implementazione. L'architetto deve occuparsi solo dell'architettura e deve esserci una distinzione netta.
 
-L'integrità concettuale in un progetto è fondamentale, bisogna avere un solo set di idee anziché idee distinte e scoordinate.
+L'\textbf{integrità concettuale} in un progetto è fondamentale, bisogna avere un solo set di idee anziché idee distinte e scoordinate.
 
 La semplicità arriva dall'integrità concettuale, questa arriva da una o poche menti. Tuttavia in un grande progetto deve esserci altra forza lavoro, e questa sarà nettamente separata da chi propone l'architettura. Una volta stabilito cosa si deve fare, si cerca di capire come farlo.
 
@@ -95,9 +96,9 @@ La torre di Babebe è fallita per mancanza di comunicazione e di conseguenza org
 
 Nello sviluppo di un grande progetto è necessaria comunicazione di tre tipi:
 \begin{itemize}
-    \item Informale: interpretazione di cosa è scritto
-    \item Riunioni: regolari riunioni per risolvere dubbi
-    \item Workbook: scritto dall'inizio
+    \item \textbf{Informale}: interpretazione di cosa è scritto.
+    \item \textbf{Riunioni}: regolari riunioni per risolvere dubbi.
+    \item \textbf{Workbook}: scritto dall'inizio.
 \end{itemize}
 
 Il workbook è la struttura che devono avere i documenti che il progetto produce. Deve essere aggiornato e mantenuto.
@@ -216,7 +217,7 @@ con tre diversi kernel del sistema operativo.
     \subsection{La struttura Debian}
     Tutti possono richiedere di diventare membri Debian. Per accettati nel progetto si deve dimostrare di
     avere delle competenze di base necessarie per la gestione dei pacchetti
-    software e la comprensione delle "Debian Free Software Guidelines" e del "Debian Social Contract "3 .
+    software e la comprensione delle "Debian Free Software Guidelines" e del "Debian Social Contract ".
 
     Entrando a far parte del gruppo si dà il proprio consenso a contribuire al progetto secondo la Costituzione Debian. La Costituzione definisce un'organizzazione
     di cui fanno farte 
@@ -229,7 +230,7 @@ con tre diversi kernel del sistema operativo.
     
     Il DL, il DS e il presidente del TC devono essere tre persone diverse. Il lavoro è volontario: nessuno è obbligato a fare nulla e ognuno sceglie liberamente di essere assegnato a un 
     compito che ritiene utile o interessante. Ogni anno viene nominato un nuovo DL con un'elezione generale che coinvolge tutti i sviluppatori che votano con il meccanismo di Condorcet.
-    Il DL può prendere decisioni urgenti e nomina il DS e, insieme al TC, rinnova i membri del TC stesso. La CT è composta da un massimo di 8 membri, con un minimo di 4 persone, e decide le
+    Il DL può prendere decisioni urgenti e nomina il DS e, insieme al TC, rinnova i membri del TC stesso. La TC è composta da un massimo di 8 membri, con un minimo di 4 persone, e decide le
     politiche tecniche. I singoli sviluppatori possono annullare qualsiasi decisioni del DL e del TC emettendo una risoluzione generale a una maggioranza qualificata. 
     Il DS è nominato dal DL e dal precedente DS ogni anno ed è DS è incaricato di gestire elezioni e di altre chiamate al voto e giudica eventuali controversie sull'interpretazione della Costituzione. 
     Le proprietà e le attività finanziarie sono gestite da "Software in the Public Interest, Inc" (SPI), in cui ogni membro di Debian può essere un membro votante.
@@ -289,7 +290,23 @@ con tre diversi kernel del sistema operativo.
     applicazione generica di mailer) che possono essere richiesti da altri. Per favorire il riutilizzo ed evitare le duplicazioni, Debian promuove il micro-packaging.
     Quindi è comune che da un singolo pacchetto sorgente vengano generati diversi pacchetti binari. Grazie a queste relazioni di dipendenza, l'installazione di una nuova applicazione su un sistema funzionante può essere
     indolore come digitare un comando "apt-get install applicazione": tutti i pacchetti necessari vengono recuperati da un repository pubblico (possibilmente su un insieme di CD), installati e configurati. 
-    
+
+\section{Configurazione pacchetti}
+Ogni pacchetto definisce i propri file di configurazione. Durante un upgrade da V a $V^1$, per ogni file di configurazione C:
+\begin{itemize}
+    \item Vengono considerati 3 file:
+    \begin{itemize}
+        \item $C_d$ la versione di C distribuita con V;
+        \item $C_u$ la versione di C presente nel sistema;
+        \item $C^1_d$ la versione di C distribuita con $V^1$.
+    \end{itemize}
+    \item $C_d$ = $C^1_d$ = $C_u$ - niente da installare;
+    \item $C_d$ = $C^1_d \wedge C_d \ne C_u$ - mantieni $C_u$;
+    \item $C_d \ne C^1_d \wedge C_d = C_u$ - installa $C^1_d$;
+    \item $C_d \ne C^1_d \wedge C_d \ne C_u$ - chiedi all'utente.
+\end{itemize}
+
+
 \section{Personalizzazione e manutenzione di un sistema Debian}
     Uno dei valori aggiunti dei sistemi open source è che possono essere personalizzati per soddisfare al meglio le esigenze degli utenti. Tuttavia, la personalizzazione è anche rischiosa. Un sistema altamente
     personalizzato può essere molto difficile da mantenere in sincrono con lo sviluppo mainstream dell'open source. Supponiamo
@@ -396,9 +413,9 @@ con tre diversi kernel del sistema operativo.
         \item Aiuta a mantenere il focus sull’obiettivo
         \item Diffonde la conoscenza totale della codebase (riducendo anche i rischi in caso di assenza di un collaboratore)
     \end{itemize}
-    \item \textbf{Codice condiviso} - tutto il team `e responsabile di tutto il codice e pu`o modificarlo a piacimento
-    \item \textbf{Refactoring} - Sono piccole trasformazioni che non cambiano la semantica del codice, spesso attuabili automaticamente con un editor “consapevole” del linguaggio di programmazione.
-    \item \textbf{Test-driven Development} Il test di unit`a viene scritto prima dell’unit`a stessa, servendo come “specifica” (ma senza la necessaria generalità!)
+    \item \textbf{Codice condiviso} - tutto il team é responsabile di tutto il codice e può modificarlo a piacimento
+    \item \textbf{Refactoring} - sono piccole trasformazioni che non cambiano la semantica del codice, spesso attuabili automaticamente con un editor “consapevole” del linguaggio di programmazione.
+    \item \textbf{Test-driven Development} - il test di unità viene scritto prima dell’unità stessa, servendo come “specifica” (ma senza la necessaria generalità!)
 \end{itemize}
 
 
@@ -428,7 +445,7 @@ Quando il repository è condiviso da un gruppo di lavoro, nasce il problema di g
 \end{itemize}
 
 \section{Merge}
-Merge è un'oprazione delicata che generalmente viene trattata con strategie diverse:
+Merge è un'operazione delicata che generalmente viene trattata con strategie diverse:
 \begin{itemize}
     \item Lavoro parallelo su artifact diversi;
     \item Lavoro parallelo sullo stesso artifact con hunk diversi;
@@ -484,7 +501,7 @@ Come riferirsi ad un commit:
     \item Parentela:
     \begin{itemize}
         \item \^n - ennesimo padre;
-        \item \~n ennesimo antenato.
+        \item \~n - ennesimo antenato.
     \end{itemize} 
     \item Data.
 \end{itemize} 
@@ -731,20 +748,20 @@ Il deployment verso l’ambiente di produzione può essere automatizzato (garant
 
 \section{Principi di Continuos Integration}
 \begin{itemize}
-    \item \textbf{Mantieni un repository del codice sorgente} - questo elemento è propedeutico a tutti gli altri principi, perché senza avere un repository del codice è impossibile automatizzare il build ed i test.
+    \item \textbf{Mantieni un repository del codice sorgente} - questo elemento è propedeutico a tutti gli altri principi, perché senza avere un repository del codice è impossibile automatizzare la build ed i test.
     \item \textbf{Automatizza il processo di build} - per build si intende il processo che trasforma il codice sorgente in un artefatto eseguibile. Deve essere possibile eseguire la compilazione e la creazione dei pacchetti 
         da mettere sui server in modo completamente automatizzato, senza alcun intervento umano.
-    \item \textbf{Rendi il build auto-testante} - ogni volta che il codice sorgente viene compilato ed impacchettato, è importante che vengano eseguiti dei test sul sorgente affinché la qualità del codice venga 
+    \item \textbf{Rendi la build auto-testante} - ogni volta che il codice sorgente viene compilato ed impacchettato, è importante che vengano eseguiti dei test sul sorgente affinché la qualità del codice venga 
         tenuta sotto controllo ed eventuali bug vengano scoperti il prima possibile.
     \item \textbf{Tutti eseguono commit alla baseline tutti i giorni} - è inutile compilare e testare il sorgente se gli sviluppatori sviluppano codice sui propri computer senza sincronizzarsi spesso col codice scritto 
         da altri. È importante però che il codice sia compilabile ed abbia superato tutti i test.
     \item \textbf{Ogni commit fa partire una build} - ogni modifica al codice sorgente condiviso potrebbe generare dei bug e quindi compilare e testare subito dà la possibilità di intervenire immediatamente su eventuali bug.
-    \item \textbf{Fai in modo che il build sia veloce} - una build troppo lenta può rendere poco agevole il far partire le build automatici dopo i commit, e potrebbe costringere gli sviluppatori ad aspettare la fine della build 
+    \item \textbf{Fai in modo che il build sia veloce} - una build troppo lenta può rendere poco agevole il far partire le build automatiche dopo i commit, e potrebbe costringere gli sviluppatori ad aspettare il fine della build 
         prima di effettuare un commit o di verificarne l'esito.
     \item \textbf{Eseguire i test in un clone dell'ambiente di produzione} - se l'ambiente su cui vengono eseguiti i test non è assolutamente identico all'ambiente di produzione, c'è il rischio che qualcosa che è stato testato 
         generi dei bug inspiegabili una volta rilasciato in produzione, con conseguenti danni economici.
     \item \textbf{Fai in modo che sia facile prendere le ultime versioni dei pacchetti} - questo principio serve quando si hanno tanti ambienti che devono essere tenuti allineati.
-    \item \textbf{Ognuno può vedere i risultati dell'ultimo build} - la trasparenza permette di stabilire il livello di qualità raggiunto da ogni modulo e capire quali sono i moduli che hanno bisogno di maggiore attenzione.
+    \item \textbf{Ognuno può vedere i risultati dell'ultima build} - la trasparenza permette di stabilire il livello di qualità raggiunto da ogni modulo e capire quali sono i moduli che hanno bisogno di maggiore attenzione.
     \item \textbf{Automatizza i rilasci} - anche il rilascio del software sugli ambienti di test o sull'ambiente di produzione deve essere automatizzato.
 \end{itemize}
 
@@ -789,9 +806,8 @@ $\{P\}S\{Q\}$
     Il lavoro dell'implementatore è particolarmente facile quando: Q è True (vera per ogni risultato!) o quando P è False (l’utilizzatore non riuscirà mai a portare il sistema in uno stato in cui tocchi fare qualcosa!). 
     Weakest precondition (data Q) o strongest postcondition (data P) determinano il ruolo di una feature.
 
-    Eiffel è linguaggio object-oriented che introduce i contratti nell'interfaccia delle classi. Il contratto di default per un metodo ("feature") F è {True}F{True}.
-
 \section{Eiffel}
+    Eiffel è linguaggio object-oriented che introduce i contratti nell'interfaccia delle classi. Il contratto di default per un metodo ("feature") F è $\{True\}F\{True\}$.
     Eiffel è esplicitamente progettato come linguaggio "di progetto", non solo “di programmazione”.
     Ecma standard 367: specify, design, implement and modify quality software.
     "Programmazione in grande" con oggetti, derivati da classi organizzate in gerarchie di ereditarietà e raggruppate in cluster, che forniscono feature (command o query) ai loro client.
@@ -817,15 +833,14 @@ $\{P\}S\{Q\}$
 \begin{itemize}
     \item Deve essere accessibile a pre-condizioni uguali o più deboli del metodo della superclasse
     \item Deve garantire post-condizioni uguali o più forti del metodo della superclasse 
-    \item 
 \end{itemize}
     Altrimenti il "figlio" non può essere sostituito al "padre" senza alterare il sistema.
 
     Un modo per garantire che le condizioni siano automaticamente vere consiste nell'assumere implicitamente che, se la classe evoluta specifica esplicitamente una precondizione P e una postcondizione Q, 
     le reali pre- e post-condizioni siano:
 \begin{itemize}
-    \item PREderived = PREparent ∨ P
-    \item POSTderived = POSTparent ∧ Q
+    \item PREderived = PREparent $\vee P$
+    \item POSTderived = POSTparent $\wedge Q$
 \end{itemize}
     In Eiffel: 'require else' e 'ensure then'.
 
@@ -837,7 +852,7 @@ $\{P\}S\{Q\}$
     sottotipi, infrangendo così il principio di Liskov. Si noti che una varianza in senso opposto (controvarianza) in cui i parametri posso essere sopra-tipi sarebbe invece del tutto accettabile dal punto di vista del principio 
     di Liskov: si tratta in effetti di una possibilità esplorata in alcuni linguaggi (e.g. Sather) ma risultata poco utile e tutto sommato meno naturale anche della novarianza.
 
-    Infrangere il principio di Liskov porta a possibili errori, per questo in Eiffel esiste la 'catcall', un'eccezione sollevata quando ci si aspettava un sotto-tipo e si riceve un tipo che ha tutti i medodi che servivano.
+    Infrangere il principio di Liskov porta a possibili errori, per questo in Eiffel esiste la 'catcall', un'eccezione sollevata quando ci si aspettava un sotto-tipo e si riceve un tipo che non ha tutti i medodi che servivano.
 
 \section{Violazioni del contratto}
     Nel modello di Eiffel hanno un ruolo importante le eccezioni, che vengono trattate in un modo differente da quello dei più diffusi linguaggi di programmazione.
