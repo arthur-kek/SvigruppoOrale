@@ -1,9 +1,9 @@
 # Fdb version 3
-["xdvipdfmx"] 1656862587 "main.xdv" "main.pdf" "main" 1656862587
-  "main.xdv" 1656862587 802248 3ee9945a92a0ddef9528f2e2888d8391 "xelatex"
+["xdvipdfmx"] 1656862741 "main.xdv" "main.pdf" "main" 1656862741
+  "main.xdv" 1656862740 802260 57b5358851d9d013d7650c40f192ee10 "xelatex"
   (generated)
   "main.pdf"
-["xelatex"] 1656862586 "c:/Users/Arthur/Desktop/PreparazioneEsami/Svigruppo/Riassunto/SvigruppoOrale/main.tex" "main.xdv" "main" 1656862587
+["xelatex"] 1656862739 "c:/Users/Arthur/Desktop/PreparazioneEsami/Svigruppo/Riassunto/SvigruppoOrale/main.tex" "main.xdv" "main" 1656862741
   "C:/Users/Arthur/AppData/Local/MiKTeX/miktex/data/le/xetex/xelatex.fmt" 1654680382 23682638 220c65ff38ad9654f74606653587c5ed ""
   "C:/Users/Arthur/AppData/Local/Programs/MiKTeX/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136772254 1528 7e12f4c0fcf5a072cebdcfbfc610f54c ""
   "C:/Users/Arthur/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmmi12.tfm" 1136768653 1524 4414a8315f39513458b80dfc63bff03a ""
@@ -80,11 +80,11 @@
   "C:/Users/Arthur/AppData/Local/Programs/MiKTeX/tex/latex/tools/xspace.sty" 1636713860 4545 d84d0b20a11b9c36c6ecf45697be591c ""
   "C:/Users/Arthur/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388494052 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/Arthur/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1636288472 56029 3f7889dab51d620aa43177c391b7b190 ""
-  "c:/Users/Arthur/Desktop/PreparazioneEsami/Svigruppo/Riassunto/SvigruppoOrale/main.tex" 1656862586 79657 c9b7d15f79ef58f5702a38a1527b21b4 ""
-  "main.aux" 1656862587 7829 46717271f2a340987a4da580baf95ffb "xelatex"
-  "main.out" 1656862587 7670 bc3415dca0685fc12e9566d910c3e7ac "xelatex"
-  "main.tex" 1656862586 79657 c9b7d15f79ef58f5702a38a1527b21b4 ""
-  "main.toc" 1656862587 4222 fcb120a9209968517f8edd3045c40470 "xelatex"
+  "c:/Users/Arthur/Desktop/PreparazioneEsami/Svigruppo/Riassunto/SvigruppoOrale/main.tex" 1656862739 79658 16cbc81c84969194b61862f209647863 ""
+  "main.aux" 1656862740 7829 46717271f2a340987a4da580baf95ffb "xelatex"
+  "main.out" 1656862740 7670 bc3415dca0685fc12e9566d910c3e7ac "xelatex"
+  "main.tex" 1656862739 79658 16cbc81c84969194b61862f209647863 ""
+  "main.toc" 1656862740 4222 fcb120a9209968517f8edd3045c40470 "xelatex"
   (generated)
   "main.aux"
   "main.log"

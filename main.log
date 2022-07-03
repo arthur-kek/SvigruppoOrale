@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (MiKTeX 22.3) (preloaded format=xelatex 2022.6.8)  3 JUL 2022 17:36
+This is XeTeX, Version 3.141592653-2.6-0.999994 (MiKTeX 22.3) (preloaded format=xelatex 2022.6.8)  3 JUL 2022 17:39
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -496,4 +496,4 @@ Here is how much of TeX's memory you used:
  1348 hyphenation exceptions out of 8191
  72i,8n,76p,575b,484s stack positions out of 10000i,1000n,20000p,200000b,80000s
 
-Output written on main.xdv (39 pages, 802248 bytes).
+Output written on main.xdv (39 pages, 802260 bytes).
